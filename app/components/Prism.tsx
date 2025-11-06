@@ -20,6 +20,7 @@ interface PrismProps {
   bloom?: number;
   suspendWhenOffscreen?: boolean;
   timeScale?: number;
+  saturation?: number;
 }
 
 const Prism: React.FC<PrismProps> = ({
@@ -37,7 +38,8 @@ const Prism: React.FC<PrismProps> = ({
   inertia = 0.05,
   bloom = 1,
   suspendWhenOffscreen = false,
-  timeScale = 0.5
+  timeScale = 0.5,
+  saturation = undefined
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -52,7 +54,7 @@ const Prism: React.FC<PrismProps> = ({
     const NOISE = Math.max(0.0, noise);
     const offX = offset?.x ?? 0;
     const offY = offset?.y ?? 0;
-    const SAT = transparent ? 1.5 : 1;
+    const SAT = saturation ?? (transparent ? 1.5 : 1);
     const SCALE = Math.max(0.001, scale);
     const HUE = hueShift || 0;
     const CFREQ = Math.max(0.0, colorFrequency || 1);
@@ -447,7 +449,8 @@ const Prism: React.FC<PrismProps> = ({
     hoverStrength,
     inertia,
     bloom,
-    suspendWhenOffscreen
+    suspendWhenOffscreen,
+    saturation
   ]);
 
   return <div className="prism-container" ref={containerRef} />;

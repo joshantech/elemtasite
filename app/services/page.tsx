@@ -18,24 +18,24 @@ const socialItems = [
 
 const servicesItems = [
   { 
-    link: '#softwares', 
+    link: '/services/softwares', 
     text: 'Software Design & Development', 
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop' 
   },
   { 
-    link: '#ai', 
-    text: 'AI Integration', 
+    link: '/services/website', 
+    text: 'Website Design', 
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop' 
+  },
+  { 
+    link: '/services/ai', 
+    text: 'AI Automation', 
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop' 
   },
   { 
-    link: '#marketing', 
+    link: '/services/marketing', 
     text: 'Marketing & Branding', 
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop' 
-  },
-  { 
-    link: '#website', 
-    text: 'Website Design', 
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop' 
   }
 ];
 

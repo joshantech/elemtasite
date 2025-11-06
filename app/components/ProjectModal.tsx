@@ -11,7 +11,7 @@ export interface ProjectItem {
   category: string;
   image: string;
   images?: string[]; // Optional array for multiple images
-  technologies: string[];
+  technologies?: string[];
   link?: string;
   // Extended details for modal
   fullDescription?: string;

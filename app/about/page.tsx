@@ -1,9 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import StaggeredMenu from '../components/StaggeredMenu';
 import ReviewCarousel from '../components/ReviewCarousel';
 import ReviewCardCarousel from '../components/ReviewCardCarousel';
+import ProjectModal, { ProjectItem } from '../components/ProjectModal';
+import Squares from '../../components/Squares';
 import { Linkedin, Instagram, Facebook, MapPin } from 'lucide-react';
+import { allProjects } from '../data/projects';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -18,63 +22,16 @@ const socialItems = [
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
 
-// Example work items - replace with your actual projects
-const workItems = [
-  {
-    id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with modern UI/UX and seamless payment integration.',
-    category: 'Web Development',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    link: '#'
-  },
-  {
-    id: 2,
-    title: 'AI-Powered Analytics Dashboard',
-    description: 'Advanced analytics platform with machine learning insights and real-time data visualization.',
-    category: 'AI Integration',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    technologies: ['Python', 'TensorFlow', 'React'],
-    link: '#'
-  },
-  {
-    id: 3,
-    title: 'Mobile Banking App',
-    description: 'Secure and intuitive mobile banking application with biometric authentication.',
-    category: 'Mobile Development',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop',
-    technologies: ['React Native', 'Firebase', 'TypeScript'],
-    link: '#'
-  },
-  {
-    id: 4,
-    title: 'Enterprise Automation System',
-    description: 'Custom automation solution that streamlines business processes and increases efficiency.',
-    category: 'Software Development',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    technologies: ['Python', 'Django', 'PostgreSQL'],
-    link: '#'
-  },
-  {
-    id: 5,
-    title: 'Brand Identity & Website',
-    description: 'Complete brand redesign and modern website development for a growing startup.',
-    category: 'Branding & Design',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
-    technologies: ['Figma', 'Next.js', 'Tailwind CSS'],
-    link: '#'
-  },
-  {
-    id: 6,
-    title: 'Cloud Infrastructure Migration',
-    description: 'Seamless migration to cloud infrastructure with improved scalability and performance.',
-    category: 'DevOps',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop',
-    technologies: ['AWS', 'Docker', 'Kubernetes'],
-    link: '#'
-  }
-];
+// Use actual projects from data file
+const workItems = allProjects.map(project => ({
+  id: project.id,
+  title: project.title,
+  description: project.description,
+  category: project.category,
+  image: project.image,
+  technologies: project.technologies || [],
+  link: project.link || '#'
+}));
 
 // Google Reviews Data
 const googleReviews = [
@@ -111,8 +68,22 @@ const googleReviews = [
 ];
 
 export default function About() {
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: ProjectItem) => {
+    e.preventDefault();
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
+    <div className="min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 relative">
       {/* Staggered Menu Navigation */}
       <StaggeredMenu
         position="right"
@@ -131,9 +102,21 @@ export default function About() {
         onMenuClose={() => console.log('Menu closed')}
       />
       
-      <div className="max-w-7xl mx-auto">
+      {/* Squares Background - Covers entire page after header */}
+      <div className="absolute inset-0 top-0 left-0 right-0 z-0 pointer-events-none" style={{ top: '200px', bottom: '0' }}>
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='#4a4a4a'
+          hoverFillColor='#333'
+          className="w-full h-full"
+        />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-12 sm:mb-16 md:mb-24 lg:mb-32 px-4">
+        <div className="text-center mb-12 sm:mb-16 md:mb-24 lg:mb-32 px-4 relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
             Our Work
           </h1>
@@ -143,7 +126,7 @@ export default function About() {
         </div>
 
         {/* Connect With Us Section */}
-        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 px-4">
+        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* Heading */}
            
@@ -205,10 +188,11 @@ export default function About() {
               </div>
             </div>
 
-            {/* Review Carousel Prototype */}
-            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4">
+            {/* Review Carousels - Original for mobile, Combined for desktop */}
+            {/* Mobile: Original ReviewCarousel */}
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10">
               <div className="flex justify-center">
-                <div style={{ height: '600px', position: 'relative' }}>
+                <div style={{ height: '600px', position: 'relative', width: '100%', maxWidth: '400px' }}>
                   <ReviewCarousel
                     items={googleReviews}
                     baseWidth={400}
@@ -222,8 +206,8 @@ export default function About() {
               </div>
             </div>
 
-            {/* Review Card Carousel Prototype */}
-            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 overflow-visible">
+            {/* Desktop: Combined Review Card Carousel */}
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 overflow-visible hidden md:block relative z-10">
               <div className="max-w-7xl mx-auto overflow-visible">
                 <ReviewCardCarousel items={googleReviews} />
               </div>
@@ -232,13 +216,19 @@ export default function About() {
         </div>
 
         {/* Work Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-          {workItems.map((item) => (
-            <a
-              key={item.id}
-              href={item.link}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl"
-            >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 px-4 mb-16 sm:mb-20 md:mb-24 lg:mb-32 relative z-10">
+          {workItems.map((item) => {
+            // Find the full project data from allProjects
+            const fullProject = allProjects.find(p => p.id === item.id);
+            if (!fullProject) return null;
+            
+            return (
+              <a
+                key={item.id}
+                href="#"
+                onClick={(e) => handleProjectClick(e, fullProject)}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer"
+              >
               {/* Image */}
               <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                 <img
@@ -284,12 +274,13 @@ export default function About() {
                   View Project →
                 </span>
               </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16 sm:mt-20 md:mt-24 px-4">
+        <div className="text-center mt-16 sm:mt-20 md:mt-24 px-4 relative z-10">
           <p className="text-white text-lg sm:text-xl md:text-2xl mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
             Ready to start your project?
           </p>
@@ -302,6 +293,13 @@ export default function About() {
           </a>
         </div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

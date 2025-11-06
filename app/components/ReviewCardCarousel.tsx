@@ -99,51 +99,141 @@ export default function ReviewCardCarousel({ items }: ReviewCardCarouselProps) {
               const activeIndex = currentIndex + 1;
               const isActive = index === activeIndex && activeIndex >= 0 && activeIndex < items.length;
               
-              return (
-                <div 
-                  key={item.id} 
-                  className={`review-card ${isActive ? 'active' : 'preview'}`}
-                >
-                  {/* Card Content */}
-                  <div className="review-card-content">
-                    {/* Header with Name and Rating */}
-                    <div className="review-card-header">
-                      <h3 className="review-card-title">{item.reviewerName}</h3>
-                      <div className="review-card-rating">
-                        <Star className="review-card-star-icon" />
-                        <span className="review-card-rating-text">{item.rating}</span>
+              // For active card, show full detailed design; for preview cards, show truncated preview
+              if (isActive) {
+                // Full detailed review design
+                const initials = item.reviewerName.split(' ').map(n => n[0]).join('').toUpperCase();
+                // Since we're using line-clamp: 8, show button if text is likely longer than 8 lines
+                // Use a more generous threshold to ensure button shows for long reviews
+                const estimatedCharsPerLine = 50; // More conservative estimate
+                const maxLines = 8;
+                const isTextLong = item.reviewText.length > (estimatedCharsPerLine * maxLines);
+                
+                return (
+                  <div 
+                    key={item.id} 
+                    className={`review-card ${isActive ? 'active' : 'preview'} review-card-detailed`}
+                  >
+                    <div className="review-card-content">
+                      {/* Header with Avatar and Info */}
+                      <div className="review-card-detailed-header">
+                        <div className="review-card-avatar">
+                          {initials}
+                        </div>
+                        <div className="review-card-detailed-info">
+                          <div className="review-card-name-row">
+                            <h3 className="review-card-title">{item.reviewerName}</h3>
+                            {item.isLocalGuide && (
+                              <span className="review-card-badge review-card-badge-yellow">
+                                Local Guide
+                              </span>
+                            )}
+                          </div>
+                          <p className="review-card-stats">{item.localGuideStats}</p>
+                          <div className="review-card-rating-row">
+                            <div className="review-card-stars">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <Star 
+                                  key={i} 
+                                  className={`review-card-star ${i < item.rating ? 'filled' : ''}`}
+                                  fill={i < item.rating ? 'currentColor' : 'none'}
+                                />
+                              ))}
+                            </div>
+                            <span className="review-card-time">{item.timeAgo}</span>
+                            {item.isNew && (
+                              <span className="review-card-badge review-card-badge-green">
+                                NEW
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Review Text - Truncated to fit fixed size */}
-                    <p className="review-card-description">
-                      {item.reviewText.length > 200 
-                        ? item.reviewText.substring(0, 200) + '...' 
-                        : item.reviewText}
-                    </p>
+                      {/* Full Review Text */}
+                      <p className="review-card-detailed-text" id={`review-text-${item.id}`}>
+                        {item.reviewText}
+                      </p>
 
-                    {/* View Full Review Link */}
-                    <a 
-                      href="https://g.page/r/your-business-id/review" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="review-card-link"
-                    >
-                      View full review
-                    </a>
+                      {/* View Full Review Link - Always show for detailed card */}
+                      <div className="review-card-detailed-link-container">
+                        <a 
+                          href="https://g.page/r/your-business-id/review" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="review-card-detailed-link"
+                        >
+                          View full review
+                        </a>
+                      </div>
 
-                    {/* Reviewer Info at Bottom */}
-                    <div className="review-card-footer">
-                      <div className="review-card-icon-item">
-                        <User className="review-card-icon" />
-                        <span className="review-card-icon-text">
-                          {item.isLocalGuide ? 'Local Guide' : 'Reviewer'}
-                        </span>
+                      {/* Footer Badge */}
+                      <div className="review-card-detailed-footer">
+                        <div className="review-card-icon-item">
+                          {item.isLocalGuide ? (
+                            <MapPin className="review-card-icon" />
+                          ) : (
+                            <User className="review-card-icon" />
+                          )}
+                          <span className="review-card-icon-text">
+                            {item.isLocalGuide ? 'Local Guide' : 'Reviewer'}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
+                );
+              } else {
+                // Preview card design (truncated)
+                return (
+                  <div 
+                    key={item.id} 
+                    className={`review-card ${isActive ? 'active' : 'preview'}`}
+                  >
+                    <div className="review-card-content">
+                      {/* Header with Name and Rating */}
+                      <div className="review-card-header">
+                        <h3 className="review-card-title">{item.reviewerName}</h3>
+                        <div className="review-card-rating">
+                          <Star className="review-card-star-icon" />
+                          <span className="review-card-rating-text">{item.rating}</span>
+                        </div>
+                      </div>
+
+                      {/* Review Text - Truncated */}
+                      <p className="review-card-description">
+                        {item.reviewText.length > 200 
+                          ? item.reviewText.substring(0, 200) + '...' 
+                          : item.reviewText}
+                      </p>
+
+                      {/* View Full Review Link */}
+                      <a 
+                        href="https://g.page/r/your-business-id/review" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="review-card-link"
+                      >
+                        View full review
+                      </a>
+
+                      {/* Reviewer Info at Bottom */}
+                      <div className="review-card-footer">
+                        <div className="review-card-icon-item">
+                          {item.isLocalGuide ? (
+                            <MapPin className="review-card-icon" />
+                          ) : (
+                            <User className="review-card-icon" />
+                          )}
+                          <span className="review-card-icon-text">
+                            {item.isLocalGuide ? 'Local Guide' : 'Reviewer'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
             })}
           </motion.div>
         </div>
