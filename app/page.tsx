@@ -202,30 +202,12 @@ export default function Home() {
             </h2>
           </div>
           
-          {/* Mobile: Backdrop Container with Dark Silver Background */}
-          <div className="w-full px-4 sm:px-6 md:hidden relative overflow-visible mt-8 sm:mt-12" style={{ maxWidth: '1500px' }}>
-            <div className="rounded-xl p-4 sm:p-6 shadow-2xl relative overflow-visible" style={{ 
-              minHeight: '2100px',
-              background: 'linear-gradient(135deg, #4a5568 0%, #2d3748 50%, #4a5568 100%)',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+          {/* Mobile: Black Container - Full Width, No Backdrop */}
+          <div className="w-full md:hidden relative overflow-visible mt-8 sm:mt-12">
+            <div className="w-full rounded-[3rem] relative" style={{ 
+              minHeight: '2000px', 
+              backgroundColor: 'rgba(0, 0, 0, 0.85)'
             }}>
-              {/* Silk Animation Overlay */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden" style={{ zIndex: 1, mixBlendMode: 'overlay' }}>
-                <Silk
-                  speed={5}
-                  scale={1}
-                  color="#333333"
-                  noiseIntensity={1.5}
-                  rotation={0}
-                />
-              </div>
-              
-              {/* Black Box Container - Nested inside backdrop */}
-              <div className="w-full rounded-[3rem] mx-auto relative" style={{ 
-                minHeight: '2000px', 
-                zIndex: 2,
-                backgroundColor: 'rgba(0, 0, 0, 0.85)'
-              }}>
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-2 gap-4 p-6 sm:p-8">
                   <div style={{ minHeight: '280px' }}>
@@ -339,7 +321,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
           

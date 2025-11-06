@@ -5,7 +5,6 @@ import StaggeredMenu from '../components/StaggeredMenu';
 import ReviewCarousel from '../components/ReviewCarousel';
 import ReviewCardCarousel from '../components/ReviewCardCarousel';
 import ProjectModal, { ProjectItem } from '../components/ProjectModal';
-import Squares from '../../components/Squares';
 import { Linkedin, Instagram, Facebook, MapPin } from 'lucide-react';
 import { allProjects } from '../data/projects';
 
@@ -101,18 +100,6 @@ export default function About() {
         onMenuOpen={() => console.log('Menu opened')}
         onMenuClose={() => console.log('Menu closed')}
       />
-      
-      {/* Squares Background - Covers entire page after header */}
-      <div className="absolute inset-0 top-0 left-0 right-0 z-0 pointer-events-none" style={{ top: '200px', bottom: '0' }}>
-        <Squares 
-          speed={0.5} 
-          squareSize={40}
-          direction='diagonal'
-          borderColor='#4a4a4a'
-          hoverFillColor='#333'
-          className="w-full h-full"
-        />
-      </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
