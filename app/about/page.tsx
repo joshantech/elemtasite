@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import StaggeredMenu from '../components/StaggeredMenu';
 import ReviewCarousel from '../components/ReviewCarousel';
 import ReviewCardCarousel from '../components/ReviewCardCarousel';
@@ -69,6 +69,7 @@ const googleReviews = [
 export default function About() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [carouselWidth, setCarouselWidth] = useState(400);
 
   const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: ProjectItem) => {
     e.preventDefault();
@@ -81,8 +82,20 @@ export default function About() {
     setSelectedProject(null);
   };
 
+  useEffect(() => {
+    const updateCarouselWidth = () => {
+      // Account for padding (32px = 16px on each side) and ensure it doesn't exceed 400px
+      const width = Math.min(window.innerWidth - 32, 400);
+      setCarouselWidth(Math.max(width, 300)); // Minimum width of 300px
+    };
+
+    updateCarouselWidth();
+    window.addEventListener('resize', updateCarouselWidth);
+    return () => window.removeEventListener('resize', updateCarouselWidth);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 relative">
+    <div className="min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 relative overflow-x-hidden w-full">
       {/* Staggered Menu Navigation */}
       <StaggeredMenu
         position="right"
@@ -177,12 +190,12 @@ export default function About() {
 
             {/* Review Carousels - Original for mobile, Combined for desktop */}
             {/* Mobile: Original ReviewCarousel */}
-            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10">
-              <div className="flex justify-center">
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10 overflow-x-hidden w-full">
+              <div className="flex justify-center w-full">
                 <div style={{ height: '600px', position: 'relative', width: '100%', maxWidth: '400px' }}>
                   <ReviewCarousel
                     items={googleReviews}
-                    baseWidth={400}
+                    baseWidth={carouselWidth}
                     autoplay={true}
                     autoplayDelay={5000}
                     pauseOnHover={true}
