@@ -37,6 +37,24 @@ function MenuItem({ link, text, image }: MenuItemProps) {
   const marqueeRef = React.useRef<HTMLDivElement>(null);
   const marqueeInnerRef = React.useRef<HTMLDivElement>(null);
   const animationDefaults = { duration: 0.6, ease: 'expo' as const };
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Keep marquee visible on mobile
+  React.useEffect(() => {
+    if (isMobile && marqueeRef.current && marqueeInnerRef.current) {
+      gsap.set(marqueeRef.current, { y: '0%' });
+      gsap.set(marqueeInnerRef.current, { y: '0%' });
+    }
+  }, [isMobile]);
 
   const findClosestEdge = (mouseX: number, mouseY: number, width: number, height: number) => {
     const topEdgeDist = distMetric(mouseX, mouseY, width / 2, 0);
@@ -51,6 +69,7 @@ function MenuItem({ link, text, image }: MenuItemProps) {
   };
 
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isMobile) return; // Skip on mobile
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
 
     const rect = itemRef.current.getBoundingClientRect();
@@ -66,6 +85,7 @@ function MenuItem({ link, text, image }: MenuItemProps) {
   };
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isMobile) return; // Skip on mobile
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
 
     const rect = itemRef.current.getBoundingClientRect();
@@ -80,7 +100,9 @@ function MenuItem({ link, text, image }: MenuItemProps) {
   };
 
   const handleTouchStart = (ev: React.TouchEvent<HTMLAnchorElement>) => {
-    // For mobile, use center of touch point
+    // On mobile, keep animation active, don't toggle
+    if (isMobile) return;
+    // For desktop touch, use center of touch point
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
 
     const rect = itemRef.current.getBoundingClientRect();
@@ -97,6 +119,7 @@ function MenuItem({ link, text, image }: MenuItemProps) {
   };
 
   const handleTouchEnd = () => {
+    if (isMobile) return; // Keep animation active on mobile
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
 
     gsap

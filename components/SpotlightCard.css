@@ -28,3 +28,10 @@
 .card-spotlight:focus-within::before {
   opacity: 0.6;
 }
+
+/* Mobile-specific card styling */
+@media (max-width: 768px) {
+  .card-spotlight.mobile-card {
+    padding: 1rem;
+  }
+}

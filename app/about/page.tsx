@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import StaggeredMenu from '../components/StaggeredMenu';
-import ReviewCarousel from '../components/ReviewCarousel';
 import ReviewCardCarousel from '../components/ReviewCardCarousel';
 import ProjectModal, { ProjectItem } from '../components/ProjectModal';
-import { Linkedin, Instagram, Facebook, MapPin, ArrowRight } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, MapPin, ArrowRight, Star } from 'lucide-react';
 import { allProjects } from '../data/projects';
 
 const menuItems = [
@@ -69,7 +68,7 @@ const googleReviews = [
 export default function About() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [carouselWidth, setCarouselWidth] = useState(400);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
 
   const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: ProjectItem) => {
     e.preventDefault();
@@ -83,20 +82,12 @@ export default function About() {
   };
 
   useEffect(() => {
-    const updateCarouselWidth = () => {
-      // Account for all padding:
-      // - Page container: 16px on each side (px-4 on mobile) = 32px total
-      // - Review section: 16px on each side (px-4) = 32px total
-      // Total: 64px
-      const totalPadding = 64; // 32px from page + 32px from review section
-      const width = Math.min(window.innerWidth - totalPadding, 400);
-      setCarouselWidth(Math.max(width, 300)); // Minimum width of 300px
-    };
-
-    updateCarouselWidth();
-    window.addEventListener('resize', updateCarouselWidth);
-    return () => window.removeEventListener('resize', updateCarouselWidth);
-  }, []);
+    // Auto-advance reviews on mobile
+    const timer = setInterval(() => {
+      setCurrentReviewIndex((prev) => (prev + 1) % googleReviews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [googleReviews.length]);
 
   return (
     <div className="min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 relative overflow-x-hidden w-full">
@@ -192,20 +183,75 @@ export default function About() {
               </div>
             </div>
 
-            {/* Review Carousels - Original for mobile, Combined for desktop */}
-            {/* Mobile: Original ReviewCarousel */}
-            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10 overflow-x-hidden w-full">
+            {/* Review Carousels - Simple mobile, Combined for desktop */}
+            {/* Mobile: Simple Static Review Card */}
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10 w-full">
               <div className="flex justify-center w-full">
-                <div style={{ height: '600px', position: 'relative', width: `${carouselWidth}px`, maxWidth: '100%' }}>
-                  <ReviewCarousel
-                    items={googleReviews}
-                    baseWidth={carouselWidth}
-                    autoplay={true}
-                    autoplayDelay={5000}
-                    pauseOnHover={true}
-                    loop={true}
-                    round={false}
-                  />
+                <div className="w-full max-w-sm">
+                  {/* Review Card */}
+                  <div className="bg-gray-900 rounded-2xl p-5 border border-gray-700">
+                    {/* Header */}
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-semibold text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          {googleReviews[currentReviewIndex].reviewerName.charAt(0)}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="text-white text-sm font-semibold" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            {googleReviews[currentReviewIndex].reviewerName}
+                          </p>
+                          {googleReviews[currentReviewIndex].isLocalGuide && (
+                            <span className="px-2 py-0.5 text-xs text-yellow-400 bg-yellow-400/10 rounded-full" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Local Guide
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-gray-400 text-xs" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          {googleReviews[currentReviewIndex].localGuideStats}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Rating and Time */}
+                    <div className="flex items-center gap-3 mb-4 flex-wrap">
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: googleReviews[currentReviewIndex].rating }).map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                      <span className="text-gray-400 text-xs" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        {googleReviews[currentReviewIndex].timeAgo}
+                      </span>
+                      {googleReviews[currentReviewIndex].isNew && (
+                        <span className="px-2 py-0.5 text-xs text-white bg-gray-700 rounded-full" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          NEW
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Review Text */}
+                    <p className="text-white text-sm leading-relaxed mb-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      {googleReviews[currentReviewIndex].reviewText}
+                    </p>
+                  </div>
+
+                  {/* Indicators */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {googleReviews.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentReviewIndex(index)}
+                        className={`h-2 rounded-full transition-all ${
+                          index === currentReviewIndex
+                            ? 'w-8 bg-white'
+                            : 'w-2 bg-gray-600'
+                        }`}
+                        aria-label={`Go to review ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
