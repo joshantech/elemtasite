@@ -6,6 +6,7 @@ import StaggeredMenu from '../../components/StaggeredMenu';
 import ProjectModal, { ProjectItem } from '../../components/ProjectModal';
 import Plasma from '../../components/Plasma';
 import { allProjects, categoryMap } from '../../data/projects';
+import { ArrowRight } from 'lucide-react';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -99,52 +100,94 @@ export default function CategoryPage() {
             </p>
           </div>
 
-          {/* Work Grid */}
+          {/* Mobile: Card Layout - Stacked Vertically */}
           {filteredProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 md:gap-3 mb-12 max-w-6xl mx-auto">
-              {filteredProjects.map((item) => (
-                <a
-                  key={item.id}
-                  href="#"
-                  onClick={(e) => handleProjectClick(e, item)}
-                  className="group relative overflow-hidden rounded-2xl bg-black hover:bg-gray-900 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer"
-                  style={{ boxShadow: '0 0 15px rgba(255, 255, 255, 0.15), 0 0 30px rgba(255, 255, 255, 0.1)' }}
-                >
-                  {/* Image */}
-                  <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs sm:text-sm font-medium text-white bg-gray-900/80 backdrop-blur-sm rounded-full" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        {item.category}
+            <>
+              <div className="md:hidden space-y-4 mb-12 max-w-md mx-auto px-4">
+                {filteredProjects.map((item) => (
+                  <a
+                    key={item.id}
+                    href="#"
+                    onClick={(e) => handleProjectClick(e, item)}
+                    className="block bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                    style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)' }}
+                  >
+                    {/* Header Section with Image */}
+                    <div className="relative h-48 bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover opacity-80"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+                    </div>
+
+                    {/* Body Section */}
+                    <div className="bg-gray-900 p-5">
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        {item.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        {item.description}
+                      </p>
+
+                      {/* View Button */}
+                      <div className="flex items-center justify-end gap-1 text-white">
+                        <span className="text-sm font-medium" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          View
+                        </span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Desktop: Grid Layout */}
+              <div className="hidden md:grid grid-cols-3 gap-2 sm:gap-3 md:gap-3 mb-12 max-w-6xl mx-auto">
+                {filteredProjects.map((item) => (
+                  <a
+                    key={item.id}
+                    href="#"
+                    onClick={(e) => handleProjectClick(e, item)}
+                    className="group relative overflow-hidden rounded-2xl bg-black hover:bg-gray-900 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer"
+                    style={{ boxShadow: '0 0 15px rgba(255, 255, 255, 0.15), 0 0 30px rgba(255, 255, 255, 0.1)' }}
+                  >
+                    {/* Image */}
+                    <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 sm:p-8 md:p-10">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        {item.description}
+                      </p>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white font-semibold text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                        View Project →
                       </span>
                     </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 sm:p-8 md:p-10">
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white font-semibold text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      View Project →
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
+                  </a>
+                ))}
+              </div>
+            </>
           ) : (
             <div className="text-center py-20">
               <p className="text-white text-xl" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>

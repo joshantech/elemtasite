@@ -381,7 +381,7 @@ export default function Contact() {
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Joshan Christie"
-                title="Co-Founder"
+                title=""
                 handle="joshanchristie"
                 status="Online"
                 contactText="Contact Me"
@@ -404,7 +404,7 @@ export default function Contact() {
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Aseel Batuq"
-                title="Co-Founder"
+                title=""
                 handle="aseelbatuq"
                 status="Online"
                 contactText="Contact Me"

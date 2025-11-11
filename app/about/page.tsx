@@ -5,7 +5,7 @@ import StaggeredMenu from '../components/StaggeredMenu';
 import ReviewCarousel from '../components/ReviewCarousel';
 import ReviewCardCarousel from '../components/ReviewCardCarousel';
 import ProjectModal, { ProjectItem } from '../components/ProjectModal';
-import { Linkedin, Instagram, Facebook, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, MapPin, ArrowRight } from 'lucide-react';
 import { allProjects } from '../data/projects';
 
 const menuItems = [
@@ -84,8 +84,12 @@ export default function About() {
 
   useEffect(() => {
     const updateCarouselWidth = () => {
-      // Account for padding (32px = 16px on each side) and ensure it doesn't exceed 400px
-      const width = Math.min(window.innerWidth - 32, 400);
+      // Account for all padding:
+      // - Page container: 16px on each side (px-4 on mobile) = 32px total
+      // - Review section: 16px on each side (px-4) = 32px total
+      // Total: 64px
+      const totalPadding = 64; // 32px from page + 32px from review section
+      const width = Math.min(window.innerWidth - totalPadding, 400);
       setCarouselWidth(Math.max(width, 300)); // Minimum width of 300px
     };
 
@@ -192,7 +196,7 @@ export default function About() {
             {/* Mobile: Original ReviewCarousel */}
             <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 px-4 md:hidden relative z-10 overflow-x-hidden w-full">
               <div className="flex justify-center w-full">
-                <div style={{ height: '600px', position: 'relative', width: '100%', maxWidth: '400px' }}>
+                <div style={{ height: '600px', position: 'relative', width: `${carouselWidth}px`, maxWidth: '100%' }}>
                   <ReviewCarousel
                     items={googleReviews}
                     baseWidth={carouselWidth}
@@ -215,8 +219,59 @@ export default function About() {
           </div>
         </div>
 
-        {/* Work Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 px-4 mb-16 sm:mb-20 md:mb-24 lg:mb-32 relative z-10">
+        {/* Mobile: Card Layout - Stacked Vertically */}
+        <div className="md:hidden space-y-4 mb-12 max-w-md mx-auto px-4 relative z-10">
+          {workItems.map((item) => {
+            // Find the full project data from allProjects
+            const fullProject = allProjects.find(p => p.id === item.id);
+            if (!fullProject) return null;
+            
+            return (
+              <a
+                key={item.id}
+                href="#"
+                onClick={(e) => handleProjectClick(e, fullProject)}
+                className="block bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)' }}
+              >
+                {/* Header Section with Image */}
+                <div className="relative h-48 bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover opacity-80"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+                </div>
+
+                {/* Body Section */}
+                <div className="bg-gray-900 p-5">
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    {item.description}
+                  </p>
+
+                  {/* View Button */}
+                  <div className="flex items-center justify-end gap-1 text-white">
+                    <span className="text-sm font-medium" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      View
+                    </span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Desktop: Grid Layout */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 px-4 mb-16 sm:mb-20 md:mb-24 lg:mb-32 relative z-10">
           {workItems.map((item) => {
             // Find the full project data from allProjects
             const fullProject = allProjects.find(p => p.id === item.id);
@@ -238,11 +293,6 @@ export default function About() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs sm:text-sm font-medium text-white bg-gray-900/80 backdrop-blur-sm rounded-full" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    {item.category}
-                  </span>
-                </div>
               </div>
 
               {/* Content */}

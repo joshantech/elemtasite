@@ -11,7 +11,7 @@ import Silk from '../components/Silk';
 import SpotlightCard from '../components/SpotlightCard';
 import Threads from '../components/Threads';
 import Particles from '../components/Particles';
-import { Code2, Globe, Sparkles, Megaphone, Search, Palette, Rocket } from 'lucide-react';
+import { Code2, Globe, Sparkles, Megaphone, Search, Palette, Rocket, Eye, ArrowRight } from 'lucide-react';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
 // Register ScrollTrigger plugin
@@ -157,7 +157,7 @@ export default function Home() {
             <main className="mx-auto max-w-4xl text-center">
               <h1 className="mb-4 sm:mb-6 md:mb-8 font-bold tracking-wide text-white" style={{ fontSize: 'clamp(3rem, 12vw, 12rem)', fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif", letterSpacing: '0.1em' }}>
                 elemta
-              </h1>
+          </h1>
               <p className="mb-4 sm:mb-6 md:mb-8 text-lg sm:text-xl text-gray-300 md:text-2xl px-4">
                 smart digital solutions
               </p>
@@ -202,125 +202,120 @@ export default function Home() {
             </h2>
           </div>
           
-          {/* Mobile: Black Container - Full Width, No Backdrop */}
+          {/* Mobile: Service Cards and Content - No Black Container */}
           <div className="w-full md:hidden relative overflow-visible mt-8 sm:mt-12">
-            <div className="w-full rounded-[3rem] relative" style={{ 
-              minHeight: '2000px', 
-              backgroundColor: 'rgba(0, 0, 0, 0.85)'
-            }}>
-                {/* Service Cards Grid */}
-                <div className="grid grid-cols-2 gap-4 p-6 sm:p-8">
-                  <div style={{ minHeight: '280px' }}>
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Code2 className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Software
-                      </h3>
-                      <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div style={{ minHeight: '280px' }}>
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Globe className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Websites
-                      </h3>
-                      <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div style={{ minHeight: '280px' }}>
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        AI Automation
-                      </h3>
-                      <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div style={{ minHeight: '280px' }}>
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Megaphone className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Marketing & Branding
-                      </h3>
-                      <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                </div>
-                
-                {/* Animated Threads */}
-                <div style={{ width: '100%', height: '600px', position: 'relative', marginTop: '-90px' }}>
-                  <Threads
-                    amplitude={1}
-                    distance={0}
-                    enableMouseInteraction={true}
-                  />
-                </div>
-                
-                {/* Workflow Section */}
-                <div className="w-full px-6 sm:px-8 pb-8 sm:pb-12">
-                  <h3 className="text-4xl sm:text-3xl font-bold text-white text-center mb-10 sm:mb-12" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    How We Work
+            {/* Service Cards Grid */}
+            <div className="grid grid-cols-2 gap-4 p-6 sm:p-8">
+              <div className="aspect-square">
+                <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
+                  <Code2 className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Software
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Search className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>01</div>
-                      <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Discovery
-                      </h4>
-                      <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Initial contact. We discuss and understand your goals and requirements.
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Palette className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>02</div>
-                      <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Design
-                      </h4>
-                      <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Laying the groundwork. Sketching and then proposing the best possible solution for your needs.
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Code2 className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>03</div>
-                      <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Development
-                      </h4>
-                      <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Building the solution. Implementing the design and developing your solution in the most efficient and scalable way.
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Rocket className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>04</div>
-                      <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Launch
-                      </h4>
-                      <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Deploying and supporting your solution!
-                      </p>
-                    </div>
+                  <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
+                  </p>
+                </SpotlightCard>
+              </div>
+              <div className="aspect-square">
+                <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
+                  <Globe className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Websites
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
+                  </p>
+                </SpotlightCard>
+              </div>
+              <div className="aspect-square">
+                <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
+                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    AI Automation
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
+                  </p>
+                </SpotlightCard>
+              </div>
+              <div className="aspect-square">
+                <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
+                  <Megaphone className="w-8 h-8 sm:w-10 sm:h-10 text-white mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Marketing & Branding
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
+                  </p>
+                </SpotlightCard>
+              </div>
+            </div>
+            
+            {/* Animated Threads */}
+            <div style={{ width: '100%', height: '600px', position: 'relative', marginTop: '-90px' }}>
+              <Threads
+                amplitude={1}
+                distance={0}
+                enableMouseInteraction={true}
+              />
+            </div>
+            
+            {/* Workflow Section */}
+            <div className="w-full px-6 sm:px-8 pb-8 sm:pb-12">
+              <h3 className="text-4xl sm:text-3xl font-bold text-white text-center mb-10 sm:mb-12" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                How We Work
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                    <Search className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
                   </div>
+                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>01</div>
+                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Discovery
+                  </h4>
+                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Initial contact. We discuss and understand your goals and requirements.
+                  </p>
                 </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                    <Palette className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>02</div>
+                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Design
+                  </h4>
+                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Laying the groundwork. Sketching and then proposing the best possible solution for your needs.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                    <Code2 className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>03</div>
+                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Development
+                  </h4>
+                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Building the solution. Implementing the design and developing your solution in the most efficient and scalable way.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                    <Rocket className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>04</div>
+                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Launch
+                  </h4>
+                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Deploying and supporting your solution!
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -355,7 +350,7 @@ export default function Home() {
               }}>
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-2 gap-6 p-8 lg:p-12">
-                  <div style={{ minHeight: '320px' }}>
+                  <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
                       <Code2 className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
@@ -366,7 +361,7 @@ export default function Home() {
                       </p>
                     </SpotlightCard>
                   </div>
-                  <div style={{ minHeight: '320px' }}>
+                  <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
                       <Globe className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
@@ -377,7 +372,7 @@ export default function Home() {
                       </p>
                     </SpotlightCard>
                   </div>
-                  <div style={{ minHeight: '320px' }}>
+                  <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
                       <Sparkles className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
@@ -388,7 +383,7 @@ export default function Home() {
                       </p>
                     </SpotlightCard>
                   </div>
-                  <div style={{ minHeight: '320px' }}>
+                  <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
                       <Megaphone className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
@@ -500,8 +495,53 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Work Grid - Show all items */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 md:gap-3 mb-12 max-w-6xl mx-auto">
+          {/* Mobile: Card Layout - Stacked Vertically */}
+          <div className="md:hidden space-y-4 mb-12 max-w-md mx-auto px-4">
+            {workItems.map((item) => (
+              <a
+                key={item.id}
+                href="#"
+                onClick={(e) => handleProjectClick(e, item)}
+                className="block bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)' }}
+              >
+                {/* Header Section with Image */}
+                <div className="relative h-48 bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover opacity-80"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+                </div>
+
+                {/* Body Section */}
+                <div className="bg-gray-900 p-5">
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    {item.description}
+                  </p>
+
+                  {/* View Button */}
+                  <div className="flex items-center justify-end gap-1 text-white">
+                    <span className="text-sm font-medium" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      View
+                    </span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop: Grid Layout */}
+          <div className="hidden md:grid grid-cols-3 gap-2 sm:gap-3 md:gap-3 mb-12 max-w-6xl mx-auto">
             {workItems.map((item) => (
               <a
                 key={item.id}
@@ -519,11 +559,6 @@ export default function Home() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs sm:text-sm font-medium text-white bg-gray-900/80 backdrop-blur-sm rounded-full" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      {item.category}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Content */}
