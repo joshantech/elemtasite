@@ -215,7 +215,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
+                    Custom software solutions tailored to your business needs.
                   </p>
                 </SpotlightCard>
               </div>
@@ -228,7 +228,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
+                    Responsive and modern websites that engage your audience. Designed to convert visitors.
                   </p>
                 </SpotlightCard>
               </div>
@@ -241,7 +241,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
+                    Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks.
                   </p>
                 </SpotlightCard>
               </div>
@@ -254,7 +254,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
+                    Comprehensive marketing strategies. Elevate your presence effectively.
                   </p>
                 </SpotlightCard>
               </div>
