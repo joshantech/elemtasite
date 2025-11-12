@@ -208,10 +208,12 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-3 max-w-full">
               <div className="aspect-square min-w-0">
                 <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <Code2 className="w-6 h-6 text-white mb-3" />
-                  <h3 className="text-lg font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Software
-                  </h3>
+                  <div className="flex flex-col items-center mb-auto">
+                    <Code2 className="w-6 h-6 text-white mb-3" />
+                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      Software
+                    </h3>
+                  </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
                   </p>
@@ -219,10 +221,12 @@ export default function Home() {
               </div>
               <div className="aspect-square min-w-0">
                 <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <Globe className="w-6 h-6 text-white mb-3" />
-                  <h3 className="text-lg font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Websites
-                  </h3>
+                  <div className="flex flex-col items-center mb-auto">
+                    <Globe className="w-6 h-6 text-white mb-3" />
+                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      Websites
+                    </h3>
+                  </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
                   </p>
@@ -230,10 +234,12 @@ export default function Home() {
               </div>
               <div className="aspect-square min-w-0">
                 <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <Sparkles className="w-6 h-6 text-white mb-3" />
-                  <h3 className="text-lg font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    AI Automation
-                  </h3>
+                  <div className="flex flex-col items-center mb-auto">
+                    <Sparkles className="w-6 h-6 text-white mb-3" />
+                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      AI Automation
+                    </h3>
+                  </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
                   </p>
@@ -241,10 +247,12 @@ export default function Home() {
               </div>
               <div className="aspect-square min-w-0">
                 <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <Megaphone className="w-6 h-6 text-white mb-3" />
-                  <h3 className="text-lg font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Marketing & Branding
-                  </h3>
+                  <div className="flex flex-col items-center mb-auto">
+                    <Megaphone className="w-6 h-6 text-white mb-3" />
+                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                      Marketing & Branding
+                    </h3>
+                  </div>
                   <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
                   </p>
@@ -352,10 +360,12 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-6 p-8 lg:p-12">
                   <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Code2 className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Software
-                      </h3>
+                      <div className="flex flex-col items-center mb-auto">
+                        <Code2 className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          Software
+                        </h3>
+                      </div>
                       <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                         Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
                       </p>
@@ -363,10 +373,12 @@ export default function Home() {
                   </div>
                   <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Globe className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Websites
-                      </h3>
+                      <div className="flex flex-col items-center mb-auto">
+                        <Globe className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          Websites
+                        </h3>
+                      </div>
                       <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                         Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
                       </p>
@@ -374,10 +386,12 @@ export default function Home() {
                   </div>
                   <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Sparkles className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        AI Automation
-                      </h3>
+                      <div className="flex flex-col items-center mb-auto">
+                        <Sparkles className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          AI Automation
+                        </h3>
+                      </div>
                       <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                         Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
                       </p>
@@ -385,10 +399,12 @@ export default function Home() {
                   </div>
                   <div className="aspect-square">
                     <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <Megaphone className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Marketing & Branding
-                      </h3>
+                      <div className="flex flex-col items-center mb-auto">
+                        <Megaphone className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                          Marketing & Branding
+                        </h3>
+                      </div>
                       <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                         Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
                       </p>
