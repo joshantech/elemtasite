@@ -11,6 +11,8 @@ import Silk from '../components/Silk';
 import SpotlightCard from '../components/SpotlightCard';
 import Threads from '../components/Threads';
 import Particles from '../components/Particles';
+import StickyScroll from './components/ui/sticky-scroll';
+import LogoLoop from './components/ui/LogoLoop';
 import { Code2, Globe, Sparkles, Megaphone, Search, Palette, Rocket, Eye, ArrowRight } from 'lucide-react';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
@@ -116,7 +118,7 @@ export default function Home() {
   };
 
   return (
-    <div ref={containerRef} className="relative overflow-x-hidden bg-black">
+    <div ref={containerRef} className="relative bg-black">
       {/* Staggered Menu Navigation - Fixed */}
       <StaggeredMenu
         position="right"
@@ -483,133 +485,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Third Section - View Work */}
-      <section id="section3" className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden">
-        {/* Particles Background */}
-        <div className="absolute inset-0 w-full h-full z-0" style={{ width: '100%', height: '100%', position: 'absolute' }}>
-          <Particles
-            particleColors={['#ffffff', '#ffffff']}
-            particleCount={200}
-            particleSpread={10}
-            speed={0.1}
-            particleBaseSize={100}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-            className=""
-          />
-        </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header Section */}
-          <div className="text-center mb-12 sm:mb-16 md:mb-24 px-4">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-              View our work
-            </h2>
-            <p className="text-white text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-              A quick look at some of our latest projects.
-            </p>
-          </div>
-
-          {/* Mobile: Card Layout - Stacked Vertically */}
-          <div className="md:hidden space-y-4 mb-12 max-w-md mx-auto px-4">
-            {workItems.map((item) => (
-              <a
-                key={item.id}
-                href="#"
-                onClick={(e) => handleProjectClick(e, item)}
-                className="block bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
-                style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)' }}
-              >
-                {/* Header Section with Image */}
-                <div className="relative h-48 bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover opacity-80"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-                </div>
-
-                {/* Body Section */}
-                <div className="bg-gray-900 p-5">
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    {item.description}
-                  </p>
-
-                  {/* View Button */}
-                  <div className="flex items-center justify-end gap-1 text-white">
-                    <span className="text-sm font-medium" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      View
-                    </span>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {/* Desktop: Grid Layout */}
-          <div className="hidden md:grid grid-cols-3 gap-2 sm:gap-3 md:gap-3 mb-12 max-w-6xl mx-auto">
-            {workItems.map((item) => (
-              <a
-                key={item.id}
-                href="#"
-                onClick={(e) => handleProjectClick(e, item)}
-                className="group relative overflow-hidden rounded-2xl bg-black hover:bg-gray-900 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer"
-                style={{ boxShadow: '0 0 15px rgba(255, 255, 255, 0.15), 0 0 30px rgba(255, 255, 255, 0.1)' }}
-              >
-                {/* Image */}
-                <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6 sm:p-8 md:p-10">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-4 line-clamp-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    {item.description}
-                  </p>
-
-                </div>
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white font-semibold text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    View Project →
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {/* View All Projects Button */}
-          <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <a
-              href="/about"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 text-white font-bold rounded-lg transition-all transform hover:scale-105"
-              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-            >
-              View All Projects
-            </a>
+      {/* Company Logos Section */}
+      <section className="py-16 lg:py-24 bg-black relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-12 lg:mb-16" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+            Companies We've Worked With
+          </h2>
+          <div style={{ height: '120px', position: 'relative', overflow: 'hidden' }}>
+            <LogoLoop
+              logos={[
+                { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
+                { src: '/images/onecomlogo.png', alt: 'One Community', title: 'One Community' },
+                { src: '/images/Web NE transparent.png', alt: 'Web NE', title: 'Web NE' },
+                { src: '/images/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' }
+              ]}
+              speed={80}
+              direction="left"
+              logoHeight={80}
+              gap={60}
+              hoverSpeed={20}
+              fadeOut
+              fadeOutColor="#000000"
+              scaleOnHover
+              ariaLabel="Companies we've worked with"
+            />
           </div>
         </div>
       </section>
+
+      {/* Third Section - Sticky Scroll Gallery */}
+      <StickyScroll />
 
       {/* Project Modal */}
       <ProjectModal
