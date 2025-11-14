@@ -10,6 +10,7 @@ import { Mail, Phone, Facebook, Linkedin, Twitter } from 'lucide-react';
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -372,55 +373,39 @@ export default function Contact() {
 
         {/* About Us Section - Moved from About Page */}
         <div className="mt-16 md:mt-24 lg:mt-32">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white text-center mb-12 sm:mb-16 md:mb-24 px-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-            About Us
-          </h2>
+         
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start justify-items-center max-w-5xl mx-auto">
             {/* Joshan Christie Column */}
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Joshan Christie"
-                title=""
-                handle="joshanchristie"
-                status="Online"
+                title="Software Engineer"
+                description="Turning ideas into working solutions through software and automation. Creating tools and systems that help businesses grow."
+                socialLinks={[
+                  { platform: 'linkedin', url: 'https://www.linkedin.com/in/joshan-christie-15b00b233/' }
+                ]}
                 contactText="Contact Me"
                 avatarUrl="/images/Joshan.png.png"
-                showUserInfo={true}
-                enableTilt={true}
-                enableMobileTilt={false}
-                className="joshan-card"
                 contactLink="mailto:joshan@elemta.com"
                 onContactClick={() => console.log('Contact Joshan clicked')}
               />
-              <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 w-full">
-                <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  &ldquo;Hello! I specialize in turning ideas into working solutions through software and automation. While I also enjoy design, my main role is to create the tools and systems that help our clients grow and make their businesses easier to manage.&rdquo;
-                </p>
-              </div>
             </div>
 
             {/* Aseel Batuq Column */}
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Aseel Batuq"
-                title=""
-                handle="aseelbatuq"
-                status="Online"
+                title="Business Operations"
+                description="Specializing in business operations and client relations. Ensuring projects run smoothly and clients receive exceptional service."
+                socialLinks={[
+                  { platform: 'linkedin', url: 'https://www.linkedin.com/in/aseelbatuq/' }
+                ]}
                 contactText="Contact Me"
                 avatarUrl="/images/Aseel.png.png"
-                showUserInfo={true}
-                enableTilt={true}
-                enableMobileTilt={false}
-                className="aseel-card"
                 contactLink="mailto:aseel@elemta.com"
                 onContactClick={() => console.log('Contact Aseel clicked')}
               />
-              <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 w-full">
-                <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  &ldquo;Hey! I specialize in business operations and client relations. While I have a background in website development, my main role is to ensure that each project runs smoothly and that our clients receive the best possible service from start to finish.&rdquo;
-                </p>
-              </div>
             </div>
           </div>
         </div>

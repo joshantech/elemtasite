@@ -3,11 +3,12 @@
 import React, { forwardRef } from 'react';
 import './sticky-scroll.css';
 import Particles from '../../../components/Particles';
+import LogoLoop from './LogoLoop';
 
 const Component = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div className='bg-black sticky-scroll-container' ref={ref}>
-        <section className='text-white  h-screen  w-full bg-black  grid place-content-center relative overflow-hidden'>
+        <section className='text-white  h-[33vh]  w-full bg-black  grid place-content-center relative overflow-hidden'>
           {/* Particles Background */}
           <div className='absolute inset-0 w-full h-full z-0' style={{ width: '100%', height: '100%', position: 'absolute' }}>
             <Particles
@@ -22,8 +23,11 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
               className=""
             />
           </div>
-          <h1 className='2xl:text-7xl text-5xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
-          we exist to make your journey a little easier.
+          <h1 className='2xl:text-6xl text-4xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
+          we exist to make your journey 
+          </h1>
+          <h1 className='2xl:text-6xl text-4xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
+          a little easier.
             <br />
             <br /> 
           </h1>
@@ -129,11 +133,31 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
             </div>
           </div>
         </section>
-        <footer className='group bg-black relative overflow-visible'>
-          <h1 className='text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-10'>
-            elemta
-          </h1>
-          <div className='bg-black h-40 relative z-10 grid place-content-center text-2xl rounded-tr-full rounded-tl-full'></div>
+        <footer className='group bg-black relative overflow-visible py-16 lg:py-24'>
+          <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-12 lg:mb-16" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+              Companies We've Worked With
+            </h2>
+            <div style={{ height: '120px', position: 'relative', overflow: 'hidden' }}>
+              <LogoLoop
+                logos={[
+                  { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
+                  { src: '/images/onecomlogo.png', alt: 'One Community', title: 'One Community' },
+                  { src: '/images/Web NE transparent.png', alt: 'Web NE', title: 'Web NE' },
+                  { src: '/images/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' }
+                ]}
+                speed={80}
+                direction="left"
+                logoHeight={80}
+                gap={60}
+                hoverSpeed={20}
+                fadeOut
+                fadeOutColor="#000000"
+                scaleOnHover
+                ariaLabel="Companies we've worked with"
+              />
+            </div>
+          </div>
         </footer>
       </div>
   );

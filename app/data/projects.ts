@@ -44,20 +44,20 @@ export const allProjects: ProjectItem[] = [
   {
     id: 3,
     title: 'Lead Generation Automation',
-    description: 'Built a comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet.',
+    description: 'Comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet.',
     category: 'Automation',
     image: '/images/n8nss.png',
     images: [
       '/images/n8nss.png'
     ],
     technologies: ['n8n', 'Google Sheets API', 'Google Places API', 'Web Scraping'],
-    fullDescription: 'Built a comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet. The automation runs every 30 minutes during business hours, searches for businesses, processes and formats the results, filters out duplicates, and appends new leads to a Google Spreadsheet for organized storage and analysis.',
+    fullDescription: 'Comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet. The automation runs every 30 minutes during business hours, searches for businesses, processes and formats the results, filters out duplicates, and appends new leads to a Google Spreadsheet for organized storage and analysis.',
     link: '/about'
   },
   {
     id: 4,
     title: "WebOne's Main Website",
-    description: 'Developed WebOne\'s main website featuring a modern, dark-themed design with smooth animations and interactive elements.',
+    description: 'WebOne\'s main website featuring a modern, dark-themed design with smooth animations and interactive elements.',
     category: 'Web Development',
     image: '/images/mainsitepic.jpg',
     images: [
@@ -65,7 +65,7 @@ export const allProjects: ProjectItem[] = [
       '/images/servicespage.jpg'
     ],
     technologies: ['React', 'Vite', 'TailwindCSS', 'Framer Motion'],
-    fullDescription: 'Developed WebOne\'s main website featuring a modern, dark-themed design with smooth animations and interactive elements. The website showcases services including websites, software, AI solutions, and marketing services, with a clean and professional user interface.',
+    fullDescription: 'WebOne\'s main website featuring a modern, dark-themed design with smooth animations and interactive elements. The website showcases services including websites, software, AI solutions, and marketing services, with a clean and professional user interface.',
     liveUrl: 'https://www.webone.dev',
     link: '/about'
   },

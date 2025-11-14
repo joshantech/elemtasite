@@ -6,13 +6,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LightRays from './components/LightRays';
 import StaggeredMenu from './components/StaggeredMenu';
 // import Prism from './components/Prism';
-import ProjectModal from './components/ProjectModal';
+import ProjectModal, { ProjectItem } from './components/ProjectModal';
 import Silk from '../components/Silk';
 import SpotlightCard from '../components/SpotlightCard';
 import Threads from '../components/Threads';
 import Particles from '../components/Particles';
 import StickyScroll from './components/ui/sticky-scroll';
-import LogoLoop from './components/ui/LogoLoop';
 import { Code2, Globe, Sparkles, Megaphone, Search, Palette, Rocket, Eye, ArrowRight } from 'lucide-react';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
@@ -24,6 +23,7 @@ if (typeof window !== 'undefined') {
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -33,9 +33,9 @@ const socialItems = [
   { label: 'GitHub', link: 'https://github.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
-
+ 
 // Work items for the homepage
-const workItems = [
+/* const workItems = [
   {
     id: 1,
     title: 'Car Dealership Software & Website',
@@ -77,34 +77,19 @@ const workItems = [
     fullDescription: 'Built a comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet. The automation runs every 30 minutes during business hours, searches for businesses, processes and formats the results, filters out duplicates, and appends new leads to a Google Spreadsheet for organized storage and analysis.',
     link: '/about'
   }
-  // WebOne's Main Website - kept for future use on a different page
-  // {
-  //   id: 2,
-  //   title: "WebOne's Main Website",
-  //   description: 'Developed WebOne\'s main website',
-  //   category: 'Web Development',
-  //   image: '/images/mainsitepic.jpg',
-  //   images: [
-  //     '/images/mainsitepic.jpg',
-  //     '/images/servicespage.jpg'
-  //   ],
-  //   technologies: ['React', 'Vite', 'TailwindCSS', 'Framer Motion'],
-  //   fullDescription: 'Developed WebOne\'s main website featuring a modern, dark-themed design with smooth animations and interactive elements. The website showcases services including websites, software, AI solutions, and marketing services, with a clean and professional user interface.',
-  //   liveUrl: 'https://www.webone.dev',
-  //   link: '/about'
-  // }
-];
+ 
+]; */
 
 export default function Home() {
   const firstPageRef = useRef<HTMLElement>(null);
   const secondPageRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedProject, setSelectedProject] = useState<typeof workItems[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Scroll effect removed - sections now scroll normally
 
-  const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: typeof workItems[0]) => {
+  const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: ProjectItem) => {
     e.preventDefault();
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -170,6 +155,9 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-transparent via-black/50 to-black z-10 pointer-events-none"></div>
         </div>
       </section>
+
+      {/* Sticky Scroll Gallery - Second Section */}
+      <StickyScroll />
 
       {/* Second Section */}
       <section ref={secondPageRef as any} id="section2" className="relative min-h-[150vh] bg-black flex flex-col items-center justify-start overflow-hidden py-12 sm:py-16 md:py-20">
@@ -485,36 +473,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Company Logos Section */}
-      <section className="py-16 lg:py-24 bg-black relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-12 lg:mb-16" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-            Companies We've Worked With
-          </h2>
-          <div style={{ height: '120px', position: 'relative', overflow: 'hidden' }}>
-            <LogoLoop
-              logos={[
-                { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
-                { src: '/images/onecomlogo.png', alt: 'One Community', title: 'One Community' },
-                { src: '/images/Web NE transparent.png', alt: 'Web NE', title: 'Web NE' },
-                { src: '/images/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' }
-              ]}
-              speed={80}
-              direction="left"
-              logoHeight={80}
-              gap={60}
-              hoverSpeed={20}
-              fadeOut
-              fadeOutColor="#000000"
-              scaleOnHover
-              ariaLabel="Companies we've worked with"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Third Section - Sticky Scroll Gallery */}
-      <StickyScroll />
+      {/* ELEMTA Footer - Bottom of Homepage */}
+      <footer className='group bg-black relative overflow-visible'>
+        <h1 className='text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-10'>
+          elemta
+        </h1>
+        <div className='bg-black h-40 relative z-10 grid place-content-center text-2xl rounded-tr-full rounded-tl-full'></div>
+      </footer>
 
       {/* Project Modal */}
       <ProjectModal
