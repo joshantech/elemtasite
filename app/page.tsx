@@ -160,7 +160,7 @@ export default function Home() {
       <StickyScroll />
 
       {/* Second Section */}
-      <section ref={secondPageRef as any} id="section2" className="relative min-h-[150vh] bg-black flex flex-col items-center justify-start overflow-hidden py-12 sm:py-16 md:py-20">
+      <section ref={secondPageRef as any} id="section2" className="relative min-h-[150vh] bg-black flex flex-col items-center justify-start overflow-hidden pt-24 sm:pt-32 md:pt-12 pb-12 sm:pb-16 md:pb-20">
         {/* Gradient fade at top for smooth transition */}
         <div className="absolute top-0 left-0 right-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none"></div>
         
@@ -474,8 +474,8 @@ export default function Home() {
       </section>
 
       {/* ELEMTA Footer - Bottom of Homepage */}
-      <footer className='group bg-black relative overflow-visible'>
-        <h1 className='text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-10'>
+      <footer className='group bg-black relative overflow-visible pb-8 sm:pb-12 md:pb-0'>
+        <h1 className='text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-10 pb-8 sm:pb-12 md:pb-0'>
           elemta
         </h1>
         <div className='bg-black h-40 relative z-10 grid place-content-center text-2xl rounded-tr-full rounded-tl-full'></div>
