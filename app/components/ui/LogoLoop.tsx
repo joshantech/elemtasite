@@ -354,9 +354,13 @@ export const LogoLoop = React.memo<LogoLoopProps>(
             height={(item as any).height}
             alt={(item as any).alt ?? ''}
             title={(item as any).title}
-            loading="lazy"
+            loading="eager"
             decoding="async"
             draggable={false}
+            onError={(e) => {
+              console.warn(`LogoLoop: Failed to load image: ${(item as any).src}`);
+              // Keep image visible but log the error
+            }}
           />
         );
 

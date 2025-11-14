@@ -1,3 +1,8 @@
+/* Main container - ensure no clipping */
+.sticky-scroll-container {
+  overflow: visible !important;
+}
+
 /* Sticky column - basic sticky positioning */
 .sticky-column {
   position: -webkit-sticky !important;
@@ -51,6 +56,50 @@
 .sticky-scroll-container footer {
   overflow: visible !important;
   min-height: 200px;
+}
+
+.sticky-scroll-container footer > div {
+  overflow: visible !important;
+}
+
+.sticky-scroll-container footer h2 {
+  overflow: visible !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  padding-bottom: 1.5rem !important;
+  margin-bottom: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.sticky-scroll-container footer > div {
+  overflow: visible !important;
+  min-height: auto !important;
+}
+
+.sticky-scroll-container footer > div > div {
+  overflow: visible !important;
+}
+
+/* Ensure LogoLoop container doesn't clip */
+.sticky-scroll-container footer > div > div[style*="height"] {
+  overflow: visible !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Ensure LogoLoop is visible on mobile */
+@media (max-width: 768px) {
+  .sticky-scroll-container footer > div > div[style*="height"],
+  .sticky-scroll-container footer .logo-loop-container {
+    height: 140px !important;
+    min-height: 140px !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
 }
 
 .sticky-scroll-container footer h1 {
