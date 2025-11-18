@@ -107,6 +107,14 @@
   z-index: 10;
 }
 
+/* Mobile specific adjustments for first section heading */
+@media (max-width: 768px) {
+  .sticky-scroll-container section:first-of-type h1 {
+    font-size: 1.875rem !important; /* text-3xl instead of text-5xl */
+    line-height: 1.2 !important;
+  }
+}
+
 /* Mobile specific footer adjustments */
 @media (max-width: 768px) {
   .sticky-scroll-container footer h1 {
@@ -116,7 +124,7 @@
   }
   
   .sticky-scroll-container footer h2 {
-    font-size: 1.5rem !important; /* Half of text-3xl (1.875rem / 2 = 0.9375rem / 15px) */
+    font-size: 1.5rem !important; 
   }
   
   .sticky-scroll-container footer {
