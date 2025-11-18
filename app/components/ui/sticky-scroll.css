@@ -115,6 +115,10 @@
     margin-bottom: 0;
   }
   
+  .sticky-scroll-container footer h2 {
+    font-size: 1.5rem !important; /* Half of text-3xl (1.875rem / 2 = 0.9375rem / 15px) */
+  }
+  
   .sticky-scroll-container footer {
     padding-bottom: 0.5rem;
     min-height: auto;

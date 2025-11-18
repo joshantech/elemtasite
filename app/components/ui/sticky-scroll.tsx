@@ -2,31 +2,16 @@
 
 import React, { forwardRef } from 'react';
 import './sticky-scroll.css';
-import Particles from '../../../components/Particles';
 import LogoLoop from './LogoLoop';
 
 const Component = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div className='bg-black sticky-scroll-container' ref={ref}>
         <section className='text-white  h-[33vh]  w-full bg-black  grid place-content-center relative overflow-hidden'>
-          {/* Particles Background */}
-          <div className='absolute inset-0 w-full h-full z-0' style={{ width: '100%', height: '100%', position: 'absolute' }}>
-            <Particles
-              particleColors={['#ffffff', '#ffffff']}
-              particleCount={200}
-              particleSpread={10}
-              speed={0.1}
-              particleBaseSize={100}
-              moveParticlesOnHover={true}
-              alphaParticles={false}
-              disableRotation={false}
-              className=""
-            />
-          </div>
-          <h1 className='2xl:text-6xl text-4xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
+          <h1 className='2xl:text-8xl text-5xl sm:text-6xl md:text-7xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
           we exist to make your journey 
           </h1>
-          <h1 className='2xl:text-6xl text-4xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
+          <h1 className='2xl:text-8xl text-5xl sm:text-6xl md:text-7xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
           a little easier.
             <br />
             <br /> 
@@ -143,7 +128,7 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                 logos={[
                   { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
                   { src: '/images/onecomlogo.png', alt: 'One Community', title: 'One Community' },
-                  { src: '/images/Web NE transparent.png', alt: 'Web NE', title: 'Web NE' },
+                  { src: '/images/WEBONEWHITELOGO.svg', alt: 'Web NE', title: 'Web NE' },
                   { src: '/images/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' }
                 ]}
                 speed={80}

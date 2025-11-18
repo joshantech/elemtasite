@@ -9,14 +9,14 @@ import Link from 'next/link';
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'Instagram', link: 'https://instagram.com' },
+  { label: 'Facebook', link: 'https://facebook.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
 
@@ -172,7 +172,7 @@ export default function CategoryPage() {
         items={menuItems}
         socialItems={socialItems}
         displaySocials={true}
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor="#fff"
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}

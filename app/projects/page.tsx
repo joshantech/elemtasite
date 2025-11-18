@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import StaggeredMenu from '../components/StaggeredMenu';
 import ProjectModal, { ProjectItem } from '../components/ProjectModal';
 import { allProjects } from '../data/projects';
@@ -9,14 +9,14 @@ import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'Instagram', link: 'https://instagram.com' },
+  { label: 'Facebook', link: 'https://facebook.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
 
@@ -64,6 +64,15 @@ export default function Projects() {
     }
   };
 
+  // Auto-cycle through projects every 8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFeaturedProjectIndex((prev) => (prev + 1) % workItems.length);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [workItems.length]);
+
   const currentFeaturedProject = allProjects.find(p => p.id === workItems[featuredProjectIndex]?.id);
 
   return (
@@ -74,7 +83,7 @@ export default function Projects() {
         items={menuItems}
         socialItems={socialItems}
         displaySocials={true}
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor="#fff"
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
@@ -90,194 +99,70 @@ export default function Projects() {
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16 md:mb-24 lg:mb-32 px-4 relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-            Our Work
+            Projects
           </h1>
           <p className="text-white text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
             Explore our portfolio of innovative projects and solutions that drive digital transformation.
           </p>
         </div>
 
-        {/* Featured Project Section */}
+        {/* Featured Project Section - Image-Focused Carousel */}
         {currentFeaturedProject && (
           <div ref={featuredSectionRef} className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 relative z-10">
-            {/* Mobile: Simplified Layout */}
-            <div className="md:hidden space-y-4 mb-8">
-              {/* Featured Project Card */}
-              <div className="bg-gray-900 rounded-2xl overflow-hidden">
-                <div className="relative h-64 bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={workItems[featuredProjectIndex].image}
-                    alt={workItems[featuredProjectIndex].title}
-                    className="w-full h-full object-cover opacity-80"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-                  
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={handlePrevProject}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-all"
-                    aria-label="Previous project"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-white" />
-                  </button>
-                  <button
-                    onClick={handleNextProject}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-all"
-                    aria-label="Next project"
-                  >
-                    <ChevronRight className="w-5 h-5 text-white" />
-                  </button>
-                </div>
+            {/* Full-Width Image Carousel */}
+            <div className="relative w-full rounded-2xl overflow-hidden bg-black">
+              {/* Main Image */}
+              <div className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
+                <img
+                  src={workItems[featuredProjectIndex].image}
+                  alt={workItems[featuredProjectIndex].title}
+                  className="w-full h-full object-cover transition-opacity duration-500"
+                  loading="eager"
+                />
+                
+                {/* Gradient Overlay for Text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                
+                {/* Navigation Arrows */}
+                <button
+                  onClick={handlePrevProject}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 transition-all z-10"
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
+                <button
+                  onClick={handleNextProject}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 transition-all z-10"
+                  aria-label="Next project"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
 
-                <div className="bg-gray-900 p-5">
-                  <div className="text-sm text-gray-400 mb-2" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Project {featuredProjectIndex + 1} of {workItems.length}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                {/* Minimal Text Overlay at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 lg:p-12">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     {workItems[featuredProjectIndex].title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     {workItems[featuredProjectIndex].description}
                   </p>
-                  
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {workItems[featuredProjectIndex].technologies.slice(0, 3).map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 text-xs text-gray-300 bg-gray-800 rounded-md"
-                        style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* View Project Button */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleProjectClick(e as any, currentFeaturedProject);
-                    }}
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-all"
-                    style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                  >
-                    <span>View Project</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </button>
                 </div>
-              </div>
-
-              {/* Pagination Dots */}
-              <div className="flex justify-center gap-2">
-                {workItems.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleThumbnailClick(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === featuredProjectIndex ? 'bg-white w-8' : 'bg-gray-600'
-                    }`}
-                    aria-label={`Go to project ${index + 1}`}
-                  />
-                ))}
               </div>
             </div>
 
-            {/* Desktop: Two Column Layout */}
-            <div className="hidden md:block">
-              <div className="grid grid-cols-2 gap-6 lg:gap-8 mb-8">
-                {/* Left: Image with Navigation */}
-                <div className="relative rounded-2xl overflow-hidden bg-gray-900">
-                  <div className="relative h-[500px] lg:h-[600px] overflow-hidden">
-                    <img
-                      src={workItems[featuredProjectIndex].image}
-                      alt={workItems[featuredProjectIndex].title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    
-                    {/* Category Tag */}
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <span className="text-white text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        {workItems[featuredProjectIndex].category}
-                      </span>
-                    </div>
-
-                    {/* Navigation Arrows */}
-                    <button
-                      onClick={handlePrevProject}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 transition-all z-10"
-                      aria-label="Previous project"
-                    >
-                      <ChevronLeft className="w-6 h-6 text-white" />
-                    </button>
-                    <button
-                      onClick={handleNextProject}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 transition-all z-10"
-                      aria-label="Next project"
-                    >
-                      <ChevronRight className="w-6 h-6 text-white" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Right: Project Details */}
-                <div className="bg-gray-900 rounded-2xl p-6 lg:p-8 flex flex-col justify-between">
-                  <div>
-                    <div className="text-sm text-gray-400 mb-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      Project {featuredProjectIndex + 1} of {workItems.length}
-                    </div>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      {workItems[featuredProjectIndex].title}
-                    </h2>
-                    <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      {workItems[featuredProjectIndex].description}
-                    </p>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {workItems[featuredProjectIndex].technologies.slice(0, 3).map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1.5 text-sm text-gray-300 bg-gray-800 rounded-md"
-                          style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* View Project Button */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleProjectClick(e as any, currentFeaturedProject);
-                    }}
-                    className="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-all w-fit"
-                    style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                  >
-                    <span>View Project</span>
-                    <ExternalLink className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Pagination Dots */}
-              <div className="flex justify-center gap-2">
-                {workItems.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleThumbnailClick(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === featuredProjectIndex ? 'bg-white w-8' : 'bg-gray-600 w-2'
-                    }`}
-                    aria-label={`Go to project ${index + 1}`}
-                  />
-                ))}
-              </div>
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {workItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleThumbnailClick(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === featuredProjectIndex ? 'bg-white w-8' : 'bg-gray-600 w-2'
+                  }`}
+                  aria-label={`Go to project ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         )}

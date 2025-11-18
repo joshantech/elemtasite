@@ -23,14 +23,14 @@ if (typeof window !== 'undefined') {
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'Instagram', link: 'https://instagram.com' },
+  { label: 'Facebook', link: 'https://facebook.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
  
@@ -110,7 +110,7 @@ export default function Home() {
         items={menuItems}
         socialItems={socialItems}
         displaySocials={true}
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor="#fff"
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
@@ -259,62 +259,6 @@ export default function Home() {
               />
             </div>
             
-            {/* Workflow Section */}
-            <div className="w-full px-6 sm:px-8 pb-8 sm:pb-12">
-              <h3 className="text-4xl sm:text-3xl font-bold text-white text-center mb-10 sm:mb-12" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                How We Work
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                    <Search className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                  </div>
-                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>01</div>
-                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Discovery
-                  </h4>
-                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Initial contact. We discuss and understand your goals and requirements.
-                  </p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                    <Palette className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                  </div>
-                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>02</div>
-                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Design
-                  </h4>
-                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Laying the groundwork. Sketching and then proposing the best possible solution for your needs.
-                  </p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                    <Code2 className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                  </div>
-                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>03</div>
-                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Development
-                  </h4>
-                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Building the solution. Implementing the design and developing your solution in the most efficient and scalable way.
-                  </p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 sm:w-20 sm:h-20 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                    <Rocket className="w-10 h-10 sm:w-10 sm:h-10 text-white" />
-                  </div>
-                  <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>04</div>
-                  <h4 className="text-xl sm:text-xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Launch
-                  </h4>
-                  <p className="text-gray-300 text-base sm:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Deploying and supporting your solution!
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
           
           {/* Desktop: Backdrop Container with Dark Silver Background */}
@@ -411,62 +355,6 @@ export default function Home() {
                   />
                 </div>
               
-                {/* Workflow Section */}
-                <div className="w-full px-8 lg:px-12 pb-12 lg:pb-16">
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white text-center mb-12 lg:mb-16" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    How We Work
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Search className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>01</div>
-                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Discovery
-                      </h4>
-                      <p className="text-gray-300 text-base lg:text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Initial contact. We discuss and understand your goals and requirements. 
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Palette className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>02</div>
-                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Design
-                      </h4>
-                      <p className="text-gray-300 text-base lg:text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      Laying the groundwork. Sketching and then proposing the best possible solution for your needs.
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Code2 className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>03</div>
-                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Development
-                      </h4>
-                      <p className="text-gray-300 text-base lg:text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Building the solution. Implementing the design and developing your solution in the most efficient and scalable way.
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
-                        <Rocket className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
-                      </div>
-                      <div className="text-white text-base font-semibold mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>04</div>
-                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-3" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Launch
-                      </h4>
-                      <p className="text-gray-300 text-base lg:text-lg" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Deploying and supporting your solution!
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

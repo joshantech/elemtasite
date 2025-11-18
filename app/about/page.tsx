@@ -2,19 +2,19 @@
 
 import StaggeredMenu from '../components/StaggeredMenu';
 import Testimonials from '../components/ui/testimonials';
-import { Linkedin, Instagram, Facebook, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, MapPin, Star } from 'lucide-react';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Our Work', ariaLabel: 'View our work', link: '/projects' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'Instagram', link: 'https://instagram.com' },
+  { label: 'Facebook', link: 'https://facebook.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
 
@@ -95,7 +95,7 @@ export default function About() {
         items={menuItems}
         socialItems={socialItems}
         displaySocials={true}
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor="#fff"
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
@@ -128,7 +128,27 @@ export default function About() {
           <div className="max-w-4xl mx-auto">
             {/* Social Buttons */}
             <div className="flex flex-col items-center gap-4 sm:gap-5">
-              {/* Top Row - Social Media */}
+              {/* Top Row - Google Review (First) */}
+              <div className="flex justify-center w-full">
+                <a
+                  href="https://g.page/r/your-business-id/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <MapPin className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-200 transition-colors" strokeWidth={2.5} />
+                  <span className="text-white group-hover:text-gray-200 font-semibold text-base sm:text-lg transition-colors" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    Google
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-yellow-400" strokeWidth={2.5} />
+                    ))}
+                  </div>
+                </a>
+              </div>
+
+              {/* Bottom Row - Social Media */}
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full">
                 <a
                   href="https://linkedin.com"
@@ -166,21 +186,6 @@ export default function About() {
                   </span>
                 </a>
               </div>
-
-              {/* Bottom Row - Google Review */}
-              <div className="flex justify-center w-full">
-                <a
-                  href="https://g.page/r/your-business-id/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
-                >
-                  <MapPin className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-gray-200 transition-colors" strokeWidth={2.5} />
-                  <span className="text-white group-hover:text-gray-200 font-semibold text-base sm:text-lg transition-colors" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Google (Leave us a Review!)
-                  </span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -199,7 +204,7 @@ export default function About() {
                 </p>
                 
                 <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Our founders, Joshan Christie and Aseel Batuq, came together with complementary expertise—one specializing in software development and automation, the other in business operations and client relations. They saw firsthand how businesses were being left behind because they couldn't afford or navigate the digital transformation landscape.
+                  Our founders came together with complementary expertise—one specializing in software development and automation, the other in business operations and client relations. They saw firsthand how businesses were being left behind because they couldn't afford or navigate the digital transformation landscape.
                 </p>
                 
                 <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
