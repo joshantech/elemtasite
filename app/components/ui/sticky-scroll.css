@@ -42,6 +42,11 @@
 }
 
 /* Ensure Particles container fills the section */
+.sticky-scroll-container section:first-of-type {
+  position: relative !important;
+  width: 100% !important;
+}
+
 .sticky-scroll-container section:first-of-type .particles-container {
   width: 100% !important;
   height: 100% !important;
@@ -50,6 +55,20 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
+  z-index: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure the canvas inside particles container spans full width */
+.sticky-scroll-container section:first-of-type .particles-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  object-fit: cover !important;
 }
 
 /* Footer mobile adjustments */
@@ -137,4 +156,3 @@
     padding: 0.5rem 0;
   }
 }
-

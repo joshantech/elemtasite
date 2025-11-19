@@ -3,16 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 import LightRays from './components/LightRays';
 import StaggeredMenu from './components/StaggeredMenu';
 // import Prism from './components/Prism';
 import ProjectModal, { ProjectItem } from './components/ProjectModal';
-import Silk from '../components/Silk';
-import SpotlightCard from '../components/SpotlightCard';
-import Threads from '../components/Threads';
-import Particles from '../components/Particles';
 import StickyScroll from './components/ui/sticky-scroll';
-import { Code2, Globe, Sparkles, Megaphone, Search, Palette, Rocket, Eye, ArrowRight } from 'lucide-react';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
 // Register ScrollTrigger plugin
@@ -84,10 +80,138 @@ export default function Home() {
   const firstPageRef = useRef<HTMLElement>(null);
   const secondPageRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const stickyScrollRef = useRef<HTMLDivElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Scroll effect removed - sections now scroll normally
+  // Scroll animations
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const heroContent = heroContentRef.current;
+    const stickyScroll = stickyScrollRef.current;
+    const textContent = textContentRef.current;
+    const image = imageRef.current;
+    const footer = footerRef.current;
+
+    // Animate hero content (on initial load, not scroll)
+    if (heroContent) {
+      gsap.fromTo(
+        heroContent,
+        {
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 3.5,
+          ease: 'power3.out',
+          delay: 0.3
+        }
+      );
+    }
+
+    // Animate sticky scroll section
+    if (stickyScroll) {
+      gsap.fromTo(
+        stickyScroll,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: stickyScroll,
+            start: 'top 85%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    // Animate text content
+    if (textContent) {
+      gsap.fromTo(
+        textContent,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: textContent,
+            start: 'top 80%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    // Animate image
+    if (image) {
+      gsap.fromTo(
+        image,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: image,
+            start: 'top 80%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    // Animate footer
+    if (footer) {
+      gsap.fromTo(
+        footer,
+        {
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: footer,
+            start: 'top 85%',
+            end: 'top 60%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>, project: ProjectItem) => {
     e.preventDefault();
@@ -141,7 +265,7 @@ export default function Home() {
           
           {/* Content overlaid on the light rays */}
           <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8">
-            <main className="mx-auto max-w-4xl text-center">
+            <main ref={heroContentRef} className="mx-auto max-w-4xl text-center">
               <h1 className="mb-4 sm:mb-6 md:mb-8 font-bold tracking-wide text-white" style={{ fontSize: 'clamp(3rem, 12vw, 12rem)', fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif", letterSpacing: '0.1em' }}>
                 elemta
           </h1>
@@ -157,204 +281,43 @@ export default function Home() {
       </section>
 
       {/* Sticky Scroll Gallery - Second Section */}
-      <StickyScroll />
+      <div ref={stickyScrollRef}>
+        <StickyScroll />
+      </div>
 
-      {/* Second Section */}
-      <section ref={secondPageRef as any} id="section2" className="relative min-h-[150vh] bg-black flex flex-col items-center justify-start overflow-hidden pt-56 sm:pt-64 md:pt-12 pb-12 sm:pb-16 md:pb-20">
+      {/* Second Section - Professional Technology Company */}
+      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-56 sm:pt-64 md:pt-12 pb-12 sm:pb-16 md:pb-20">
         {/* Gradient fade at top for smooth transition */}
         <div className="absolute top-0 left-0 right-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none"></div>
         
-        {/* Prism Background Effect - Commented out for potential future use */}
-        {/* <div className="absolute inset-0 z-0 w-full" style={{ minHeight: '150vh', height: '100%' }}>
-          <Prism
-            animationType="rotate"
-            timeScale={0.5}
-            height={3.5}
-            baseWidth={5.5}
-            scale={3.6}
-            hueShift={0}
-            colorFrequency={1}
-            noise={0.5}
-            glow={1}
-            saturation={0.25}
-          />
-        </div> */}
-        
-        {/* Content Container */}
-        <div className="relative z-10 w-full flex flex-col items-center">
-          {/* White Light Effect */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-[500px] h-[150px] bg-white opacity-10 blur-3xl rounded-full z-0 top-[60px] md:w-[1000px] md:h-[250px] md:opacity-10 md:top-[50px]"></div>
-          
-          {/* Heading Text */}
-          <div className="relative text-center mb-16 sm:mb-20 md:mb-32 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 z-10">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-              Leverage the power of modern technology.
-            </h2>
-          </div>
-          
-          {/* Mobile: Service Cards and Content - No Black Container */}
-          <div className="w-full md:hidden relative overflow-visible mt-8 sm:mt-12 px-4">
-            {/* Service Cards Grid */}
-            <div className="grid grid-cols-2 gap-3 max-w-full">
-              <div className="aspect-square min-w-0">
-                <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <div className="flex flex-col items-center mb-auto">
-                    <Code2 className="w-6 h-6 text-white mb-3" />
-                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      Software
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Custom software solutions tailored to your business needs.
-                  </p>
-                </SpotlightCard>
-              </div>
-              <div className="aspect-square min-w-0">
-                <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <div className="flex flex-col items-center mb-auto">
-                    <Globe className="w-6 h-6 text-white mb-3" />
-                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      Websites
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Responsive and modern websites that engage your audience. Designed to convert visitors.
-                  </p>
-                </SpotlightCard>
-              </div>
-              <div className="aspect-square min-w-0">
-                <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <div className="flex flex-col items-center mb-auto">
-                    <Sparkles className="w-6 h-6 text-white mb-3" />
-                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      AI Automation
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks.
-                  </p>
-                </SpotlightCard>
-              </div>
-              <div className="aspect-square min-w-0">
-                <SpotlightCard className="custom-spotlight-card h-full flex flex-col mobile-card" spotlightColor="rgba(255, 255, 255, 0.2)">
-                  <div className="flex flex-col items-center mb-auto">
-                    <Megaphone className="w-6 h-6 text-white mb-3" />
-                    <h3 className="text-lg font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                      Marketing & Branding
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-xs mt-3 leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Comprehensive marketing strategies. Elevate your presence effectively.
-                  </p>
-                </SpotlightCard>
-              </div>
+        {/* Split Screen Container */}
+        <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="flex flex-col md:flex-row min-h-[80vh]">
+            {/* Left Panel - Text Content */}
+            <div ref={textContentRef} className="w-full md:w-2/5 flex flex-col justify-center py-12 md:py-20 pr-0 md:pr-8">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                We are a professional technology company
+              </h2>
+              <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                We exist to make your journey a little easier. At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and client relations to ensure your technology journey is smooth and successful.
+              </p>
+              <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                Whether you need custom software, modern websites, AI automation, or comprehensive marketing strategies, we build solutions that are scalable, efficient, and tailored to your unique business needs. We believe every business, regardless of size, deserves access to technology that drives growth and streamlines operations.
+              </p>
+              <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                From initial consultation to ongoing support, we're committed to being your essential element for digital transformation—helping you leverage the power of modern technology to focus on what you do best.
+              </p>
             </div>
             
-            {/* Animated Threads */}
-            <div style={{ width: '100%', height: '600px', position: 'relative', marginTop: '-90px' }}>
-              <Threads
-                amplitude={1}
-                distance={0}
-                enableMouseInteraction={true}
-              />
-            </div>
-            
-          </div>
-          
-          {/* Desktop: Backdrop Container with Dark Silver Background */}
-          <div className="hidden md:block w-full px-4 sm:px-6 md:px-8 relative overflow-visible mt-40 md:mt-48 lg:mt-56" style={{ maxWidth: '1500px' }}>
-            <div className="rounded-xl p-6 sm:p-8 md:p-10 shadow-2xl relative overflow-visible" style={{ 
-              minHeight: '2100px',
-              background: 'linear-gradient(135deg, #4a5568 0%, #2d3748 50%, #4a5568 100%)',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-            }}>
-              {/* Silk Animation Overlay */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden" style={{ zIndex: 1, mixBlendMode: 'overlay' }}>
-                <Silk
-                  speed={5}
-                  scale={1}
-                  color="#333333"
-                  noiseIntensity={1.5}
-                  rotation={0}
+            {/* Right Panel - Images */}
+            <div className="w-full md:w-3/5 flex items-stretch py-12 md:py-20 pl-0 md:pl-30">
+              <div ref={imageRef} className="relative w-full h-full min-h-[400px] md:min-h-[600px] rounded-lg overflow-hidden">
+                <img
+                  src="/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
+                  alt="Professional technology company"
+                  className="w-full h-full object-cover"
+                  loading="eager"
                 />
-              </div>
-              
-              {/* Black Box Container - Nested inside backdrop, extends past top */}
-              <div className="w-full max-w-5xl rounded-[3rem] mx-auto" style={{ 
-                minHeight: '2000px', 
-                position: 'absolute',
-                top: '-250px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                height: '100%',
-                zIndex: 2,
-                backgroundColor: 'rgba(0, 0, 0, 0.85)'
-              }}>
-                {/* Service Cards Grid */}
-                <div className="grid grid-cols-2 gap-6 p-8 lg:p-12">
-                  <div className="aspect-square">
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <div className="flex flex-col items-center mb-auto">
-                        <Code2 className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                          Software
-                        </h3>
-                      </div>
-                      <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Custom software solutions tailored to your business needs. We build scalable applications that grow with your company.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div className="aspect-square">
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <div className="flex flex-col items-center mb-auto">
-                        <Globe className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                          Websites
-                        </h3>
-                      </div>
-                      <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Responsive and modern websites that engage your audience. Designed to convert visitors into customers with seamless user experiences.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div className="aspect-square">
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <div className="flex flex-col items-center mb-auto">
-                        <Sparkles className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                          AI Automation
-                        </h3>
-                      </div>
-                      <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Intelligent automation solutions powered by AI. Streamline workflows and reduce manual tasks with smart technology.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                  <div className="aspect-square">
-                    <SpotlightCard className="custom-spotlight-card h-full flex flex-col" spotlightColor="rgba(255, 255, 255, 0.2)">
-                      <div className="flex flex-col items-center mb-auto">
-                        <Megaphone className="w-10 h-10 lg:w-12 lg:h-12 text-white mb-5" />
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white text-center" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                          Marketing & Branding
-                        </h3>
-                      </div>
-                      <p className="text-gray-300 text-base lg:text-lg mt-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                        Comprehensive marketing strategies and brand identity. Elevate your presence and connect with your target market effectively.
-                      </p>
-                    </SpotlightCard>
-                  </div>
-                </div>
-              
-                {/* Animated Threads */}
-                <div style={{ width: '100%', height: '600px', position: 'relative', marginTop: '-90px' }}>
-                  <Threads
-                    amplitude={1}
-                    distance={0}
-                    enableMouseInteraction={true}
-                  />
-                </div>
-              
               </div>
             </div>
           </div>
@@ -362,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* ELEMTA Footer - Bottom of Homepage */}
-      <footer className='group bg-black relative overflow-visible pb-4 sm:pb-6 md:pb-0'>
+      <footer ref={footerRef} className='group bg-black relative overflow-visible pb-4 sm:pb-6 md:pb-0'>
         <h1 className='text-[16vw] translate-y-12 sm:translate-y-16 md:translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-20'>
           elemta
         </h1>

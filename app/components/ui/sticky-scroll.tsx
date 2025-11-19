@@ -3,11 +3,21 @@
 import React, { forwardRef } from 'react';
 import './sticky-scroll.css';
 import LogoLoop from './LogoLoop';
+import Particles from '../../../components/Particles';
 
 const Component = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div className='bg-black sticky-scroll-container' ref={ref}>
         <section className='text-white  h-[33vh]  w-full bg-black  grid place-content-center relative overflow-hidden'>
+          <Particles
+            particleCount={100}
+            particleSpread={2}
+            particleBaseSize={0.5}
+            sizeRandomness={0.5}
+            speed={0.5}
+            particleColors={['#ffffff', '#ffffff', '#ffffff']}
+            className="absolute inset-0"
+          />
           <h1 className='2xl:text-8xl text-5xl sm:text-6xl md:text-7xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
           we exist to make your journey 
           </h1>
