@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser';
 import StaggeredMenu from '../components/StaggeredMenu';
 import Plasma from '../components/Plasma';
 import ProfileCard from '../components/ProfileCard';
-import { Mail, Phone, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, Facebook, Linkedin, Instagram } from 'lucide-react';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -16,9 +16,8 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com' },
-  { label: 'Facebook', link: 'https://facebook.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' }
+  { label: 'Instagram', link: 'https://instagram.com/elemtta' },
+  { label: 'LinkedIn', link: 'https://linkedin.com/company/elemta' }
 ];
 
 export default function Contact() {
@@ -145,7 +144,7 @@ export default function Contact() {
             Get in <span className="text-gray-300">Touch</span>
           </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-            Ready to transform your digital presence or build powerful business software? Get in touch with us today and let's create something amazing together.
+            Ready to transform your digital presence or build powerful business software? Get in touch with us today!
           </p>
         </div>
 
@@ -169,7 +168,7 @@ export default function Contact() {
                     Our friendly team is here to help.
                   </p>
                   <a href="mailto:contact@elemta.com" className="text-white hover:text-gray-200 transition-colors text-sm md:text-base break-all" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    contact@elemta.com
+                    design@elemta.com
                   </a>
                 </div>
               </div>
@@ -183,11 +182,8 @@ export default function Contact() {
                   <h3 className="text-white font-bold text-base md:text-lg mb-1" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                     Call us
                   </h3>
-                  <p className="text-white text-xs md:text-sm mb-1" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    Mon-Fri from 8am to 5pm
-                  </p>
-                  <a href="tel:+1234567890" className="text-white hover:text-gray-200 transition-colors text-sm md:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                    +1 (234) 567-890
+                  <a href="tel:+13133339699" className="text-white hover:text-gray-200 transition-colors text-sm md:text-base" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                    +1 (313) 333-9699
                   </a>
                 </div>
               </div>
@@ -202,11 +198,11 @@ export default function Contact() {
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
                   <Facebook className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
+                <a href="https://www.linkedin.com/company/elemta" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
                   <Linkedin className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
-                  <Twitter className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
+                <a href="https://instagram.com/elemtta" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
+                  <Instagram className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
               </div>
             </div>

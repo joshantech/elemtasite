@@ -30,52 +30,6 @@ const socialItems = [
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
  
-// Work items for the homepage
-/* const workItems = [
-  {
-    id: 1,
-    title: 'Car Dealership Software & Website',
-    description: 'A comprehensive dealership management system with customer-facing website that centralizes vehicle inventory, customer records, sales, appointments, and marketing.',
-    category: 'Web Development',
-    image: '/images/CarSite.png',
-    images: [
-      '/images/CarSite.png',
-      '/images/CarSoftware.jpg'
-    ],
-    technologies: ['Next.js', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Vercel'],
-    fullDescription: 'A comprehensive car dealership solution consisting of two integrated components: A web-based dealership management system that centralizes vehicle inventory, customer records, sales, appointments, and marketing. It manages vehicle inventory with detailed specifications, status tracking, and image uploads; a customer database with purchase history and interest tracking; sales management with automated status updates; appointment scheduling with workflow management; and a marketing module for lead tracking with scoring and follow-up reminders. An analytics dashboard provides real-time KPIs, sales trends, and performance metrics. The customer-facing website displays vehicle inventory with search/filtering, schedules appointments, and includes pages for About, Services, and Financing. It connects to the same database to show vehicles with images and enables customers to schedule appointments and explore financing options.',
-    link: '/about'
-  },
-  {
-    id: 2,
-    title: 'Elemta Internal Software',
-    description: 'An internal management system for Elemta that handles sales pipelines, client management, project tracking, team coordination, and goal tracking.',
-    category: 'Software Development',
-    image: '/images/evolvess.jpg',
-    images: [
-      '/images/evolvess.jpg',
-      '/images/marekltingss.jpg'
-    ],
-    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma ORM', 'Tailwind CSS', 'React Context API', 'Vercel'],
-    fullDescription: 'This is an internal management system for Elemta that handles sales pipelines, client management, project tracking, team coordination, and goal tracking. It includes role-based access control, a responsive UI with dark mode, and provides a centralized platform for managing all aspects of the business operations.',
-    link: '/about'
-  },
-  {
-    id: 3,
-    title: 'Lead Generation Automation',
-    description: 'Built a comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet.',
-    category: 'Automation',
-    image: '/images/n8nss.png',
-    images: [
-      '/images/n8nss.png'
-    ],
-    technologies: ['n8n', 'Google Sheets API', 'Google Places API', 'Web Scraping'],
-    fullDescription: 'Built a comprehensive lead generation automation that scrapes data of businesses in specified regions and outputs them to our google spreadsheet. The automation runs every 30 minutes during business hours, searches for businesses, processes and formats the results, filters out duplicates, and appends new leads to a Google Spreadsheet for organized storage and analysis.',
-    link: '/about'
-  }
- 
-]; */
-
 export default function Home() {
   const firstPageRef = useRef<HTMLElement>(null);
   const secondPageRef = useRef<HTMLElement>(null);
@@ -299,7 +253,7 @@ export default function Home() {
                 We are a professional technology company
               </h2>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                We exist to make your journey a little easier. At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and client relations to ensure your technology journey is smooth and successful.
+              At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and client relations to ensure your technology journey is smooth and successful.
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                 Whether you need custom software, modern websites, AI automation, or comprehensive marketing strategies, we build solutions that are scalable, efficient, and tailored to your unique business needs. We believe every business, regardless of size, deserves access to technology that drives growth and streamlines operations.

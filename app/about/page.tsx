@@ -131,7 +131,7 @@ export default function About() {
               {/* Top Row - Google Review (First) */}
               <div className="flex justify-center w-full">
                 <a
-                  href="https://g.page/r/your-business-id/review"
+                  href="https://www.google.com/maps/place/WebOne+LLC/@41.0827935,-85.1520645,11z/data=!3m1!4b1!4m6!3m5!1s0x2b906bfe00900ddb:0xe4a63b66ed3e8fd2!8m2!3d41.0827936!4d-85.1520645!16s%2Fg%2F11xs3v_y1n?entry=ttu&g_ep=EgoyMDI1MDkyOC4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
@@ -151,7 +151,7 @@ export default function About() {
               {/* Bottom Row - Social Media */}
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full">
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/company/elemta"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
@@ -163,7 +163,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/elemtta"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
