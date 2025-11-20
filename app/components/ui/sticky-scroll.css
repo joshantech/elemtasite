@@ -107,6 +107,23 @@
   visibility: visible !important;
 }
 
+/* Ensure LogoLoop is always visible - override any parent opacity animations */
+/* This prevents the GSAP fade-in animation from hiding the logo loop in Safari */
+.sticky-scroll-container footer .logo-loop-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+/* Ensure the LogoLoop root container is visible */
+.sticky-scroll-container footer .logo-loop-container > div[role="region"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
 /* Ensure LogoLoop is visible on mobile */
 @media (max-width: 768px) {
   .sticky-scroll-container footer > div > div[style*="height"],
@@ -117,6 +134,7 @@
     overflow: visible !important;
     display: block !important;
     visibility: visible !important;
+    opacity: 1 !important;
     position: relative !important;
     z-index: 10 !important;
   }
