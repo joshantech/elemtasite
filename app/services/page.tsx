@@ -12,9 +12,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com' },
-  { label: 'Facebook', link: 'https://facebook.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' }
+  { label: 'Instagram', link: 'https://www.instagram.com/elemtta/' },
+  { label: 'Facebook', link: 'https://www.facebook.com/Elemtta?mibextid=wwXIfr&rdid=L9V1whliPJ5fvbRl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CVYQ1XdNY%2F%3Fmibextid%3DwwXIfr#' },
+  { label: 'LinkedIn', link: 'https://www.linkedin.com/company/elemta' }
 ];
 
 const servicesItems = [

@@ -13,9 +13,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com' },
-  { label: 'Facebook', link: 'https://facebook.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' }
+  { label: 'Instagram', link: 'https://www.instagram.com/elemtta/' },
+  { label: 'Facebook', link: 'https://www.facebook.com/Elemtta?mibextid=wwXIfr&rdid=L9V1whliPJ5fvbRl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CVYQ1XdNY%2F%3Fmibextid%3DwwXIfr#' },
+  { label: 'LinkedIn', link: 'https://www.linkedin.com/company/elemta' }
 ];
 
 
@@ -151,7 +151,7 @@ export default function About() {
               {/* Bottom Row - Social Media */}
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full">
                 <a
-                  href="https://linkedin.com/company/elemta"
+                  href="https://www.linkedin.com/company/elemta"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
@@ -163,7 +163,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://instagram.com/elemtta"
+                  href="https://www.instagram.com/elemtta/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"
@@ -175,7 +175,7 @@ export default function About() {
                 </a>
 
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/Elemtta?mibextid=wwXIfr&rdid=L9V1whliPJ5fvbRl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CVYQ1XdNY%2F%3Fmibextid%3DwwXIfr#"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition-all duration-300 transform hover:scale-105"

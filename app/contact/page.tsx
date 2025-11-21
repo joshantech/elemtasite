@@ -16,8 +16,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com/elemtta' },
-  { label: 'LinkedIn', link: 'https://linkedin.com/company/elemta' }
+  { label: 'Instagram', link: 'https://www.instagram.com/elemtta/' },
+  { label: 'Facebook', link: 'https://www.facebook.com/Elemtta?mibextid=wwXIfr&rdid=L9V1whliPJ5fvbRl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CVYQ1XdNY%2F%3Fmibextid%3DwwXIfr#' },
+  { label: 'LinkedIn', link: 'https://www.linkedin.com/company/elemta' }
 ];
 
 export default function Contact() {
@@ -195,13 +196,13 @@ export default function Contact() {
                 Follow Us
               </h3>
               <div className="flex gap-3 md:gap-4">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
+                <a href="https://www.facebook.com/Elemtta?mibextid=wwXIfr&rdid=L9V1whliPJ5fvbRl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CVYQ1XdNY%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
                   <Facebook className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
                 <a href="https://www.linkedin.com/company/elemta" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
                   <Linkedin className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
-                <a href="https://instagram.com/elemtta" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
+                <a href="https://www.instagram.com/elemtta/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-gray-800 transition-all">
                   <Instagram className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
                 </a>
               </div>
