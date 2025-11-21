@@ -180,7 +180,27 @@
   }
   
   .sticky-scroll-container footer > div {
-    height: 2rem !important;
+    height: auto !important;
+    min-height: auto !important;
     padding: 0.5rem 0;
+  }
+  
+  /* Ensure LogoLoop container has proper height on mobile */
+  .sticky-scroll-container footer .logo-loop-container {
+    min-height: 150px !important;
+    height: auto !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Ensure LogoLoop track is visible on mobile */
+  .sticky-scroll-container footer .logo-loop-container > div[role="region"] {
+    min-height: 120px !important;
+    height: auto !important;
+  }
+  
+  .sticky-scroll-container footer .logo-loop-container > div[role="region"] > div {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

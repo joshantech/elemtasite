@@ -128,12 +128,12 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
             </div>
           </div>
         </section>
-        <footer className='group bg-black relative overflow-visible py-16 lg:py-24 pb-48 sm:pb-56 md:pb-24'>
+        <footer className='group bg-black relative overflow-visible py-16 lg:py-24 pb-8 sm:pb-12 md:pb-16'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8 overflow-visible'>
             <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-12 lg:mb-16 pb-6 leading-normal" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif", overflow: 'visible', whiteSpace: 'normal', wordBreak: 'normal', lineHeight: '1.3', minHeight: 'auto' }}>
               Companies We've Worked With
             </h2>
-            <div className="overflow-visible w-full logo-loop-container" style={{ minHeight: '120px', position: 'relative', marginBottom: '3rem', paddingBottom: '1rem', display: 'block', visibility: 'visible', opacity: 1, zIndex: 10 }}>
+            <div className="overflow-visible w-full logo-loop-container" style={{ minHeight: '150px', position: 'relative', marginBottom: '1rem', paddingBottom: '0.5rem', display: 'block', visibility: 'visible', opacity: 1, zIndex: 10 }}>
               <LogoLoop
                 logos={[
                   { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
@@ -143,8 +143,8 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                 ]}
                 speed={80}
                 direction="left"
-                logoHeight={80}
-                gap={60}
+                logoHeight={100}
+                gap={80}
                 hoverSpeed={20}
                 fadeOut
                 fadeOutColor="#000000"
