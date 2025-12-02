@@ -88,7 +88,7 @@ export default function Projects() {
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
         colors={['#C0C0C0', '#808080']}
-        logoUrl="/logo.svg"
+        logoUrl="/favicon.ico"
         accentColor="#C0C0C0"
         isFixed={false}
         onMenuOpen={() => console.log('Menu opened')}

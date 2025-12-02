@@ -25,7 +25,7 @@ const testimonials = [
   {
     text: "We're so happy with the website they created for Deema Turkish Cuisine! The team did an incredible job capturing exactly what we wanted elegant, easy to navigate, and perfectly matching our restaurant's style. They listened carefully to our ideas, added their own creative touches, and made everything look professional and modern. The menu looks beautiful online, and our customers always compliment how easy it is to find information and make reservations. They were also super patient and responsive with updates, which made the whole process stress-free. We really appreciate all their hard work and attention to detail. Highly recommend them to anyone looking for a clean, well-designed website and great customer service!",
     name: "Layal Alsowayigh",
-    role: "Restaurant Owner"
+    role: "Restaurant Manager"
   },
   {
     text: "A huge thank-you to the amazing team who built our new website! They truly brought Deema Turkish Cuisine to life online — from the colors to the photos to the way everything flows, it all reflects our restaurant perfectly. They made the whole process so easy and always took care of every little detail we asked for. Now our customers can browse the menu, find our hours, and even see our events with just a few clicks. It's clean, professional, and feels so us. We couldn't be happier! Highly recommend their work to any business that wants a beautiful, functional website built with care.",
@@ -100,7 +100,7 @@ export default function About() {
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
         colors={['#C0C0C0', '#808080']}
-        logoUrl="/logo.svg"
+        logoUrl="/favicon.ico"
         accentColor="#C0C0C0"
         isFixed={false}
         onMenuOpen={() => console.log('Menu opened')}

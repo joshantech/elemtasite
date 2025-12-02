@@ -193,7 +193,7 @@ export default function Home() {
         openMenuButtonColor="#fff"
         changeMenuColorOnOpen={true}
         colors={['#C0C0C0', '#808080']}
-        logoUrl="/logo.svg"
+        logoUrl="/favicon.ico"
         accentColor="#C0C0C0"
         isFixed={false}
         onMenuOpen={() => console.log('Menu opened')}
@@ -220,12 +220,13 @@ export default function Home() {
           {/* Content overlaid on the light rays */}
           <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8">
             <main ref={heroContentRef} className="mx-auto max-w-4xl text-center">
-              <h1 className="mb-4 sm:mb-6 md:mb-8 font-bold tracking-wide text-white" style={{ fontSize: 'clamp(3rem, 12vw, 12rem)', fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif", letterSpacing: '0.1em' }}>
-                elemta
-          </h1>
-              <p className="mb-4 sm:mb-6 md:mb-8 text-lg sm:text-xl text-gray-300 md:text-2xl px-4">
-                smart digital solutions
-              </p>
+              <img 
+                src="/images/Logo-A3.png" 
+                alt="Elemta - Smart Digital Solutions" 
+                className="mx-auto w-auto h-auto max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] object-contain"
+                style={{ maxHeight: '70vh' }}
+                loading="eager"
+              />
             </main>
           </div>
 
@@ -253,7 +254,7 @@ export default function Home() {
                 We are a professional technology company
               </h2>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-              At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and client relations to ensure your technology journey is smooth and successful.
+              At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and marketing to ensure your technology journey is smooth and successful.
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                 Whether you need custom software, modern websites, AI automation, or comprehensive marketing strategies, we build solutions that are scalable, efficient, and tailored to your unique business needs. We believe every business, regardless of size, deserves access to technology that drives growth and streamlines operations.
