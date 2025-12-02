@@ -241,15 +241,14 @@ export default function Home() {
       </div>
 
       {/* Second Section - Professional Technology Company */}
-      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-56 sm:pt-64 md:pt-12 pb-12 sm:pb-16 md:pb-20">
-        {/* Gradient fade at top for smooth transition */}
-        <div className="absolute top-0 left-0 right-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none"></div>
+      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-2 sm:pt-64 md:pt-12 pb-2 sm:pb-8 md:pb-20">
+       
         
         {/* Split Screen Container */}
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 md:px-8">
           <div className="flex flex-col md:flex-row min-h-[80vh]">
             {/* Left Panel - Text Content */}
-            <div ref={textContentRef} className="w-full md:w-2/5 flex flex-col justify-center py-12 md:py-20 pr-0 md:pr-8">
+            <div ref={textContentRef} className="w-full md:w-2/5 flex flex-col justify-center py-12 md:py-20 pr-0 md:pr-8 order-2 md:order-1">
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                 We are a professional technology company
               </h2>
@@ -265,7 +264,7 @@ export default function Home() {
             </div>
             
             {/* Right Panel - Images */}
-            <div className="w-full md:w-3/5 flex items-stretch py-12 md:py-20 pl-0 md:pl-30">
+            <div className="w-full md:w-3/5 flex items-stretch py-12 md:py-20 pl-0 md:pl-30 order-1 md:order-2">
               <div ref={imageRef} className="relative w-full h-full min-h-[400px] md:min-h-[600px] rounded-lg overflow-hidden">
                 <img
                   src="/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
@@ -280,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* ELEMTA Footer - Bottom of Homepage */}
-      <footer ref={footerRef} className='group bg-black relative overflow-visible pb-4 sm:pb-6 md:pb-0'>
+      <footer ref={footerRef} className='group bg-black relative overflow-visible pt-4 pb-4 sm:pt-6 sm:pb-6 md:pt-0 md:pb-0'>
         <h1 className='text-[16vw] translate-y-12 sm:translate-y-16 md:translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-20'>
           elemta
         </h1>

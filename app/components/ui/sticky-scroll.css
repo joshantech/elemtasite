@@ -189,7 +189,7 @@
   .sticky-scroll-container footer .logo-loop-container {
     min-height: 150px !important;
     height: auto !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   /* Ensure LogoLoop track is visible on mobile */
