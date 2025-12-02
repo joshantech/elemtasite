@@ -19,10 +19,10 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
             className="absolute inset-0"
           />
           <h1 className='2xl:text-8xl text-5xl sm:text-6xl md:text-7xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
-          we exist to make your journey 
+        the essential element
           </h1>
           <h1 className='2xl:text-8xl text-5xl sm:text-6xl md:text-7xl px-8 font-semibold text-center tracking-tight leading-[120%] relative z-10'>
-          a little easier.
+          for smarter businesses.
             <br />
             <br /> 
           </h1>
