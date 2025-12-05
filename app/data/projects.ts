@@ -72,7 +72,7 @@ export const allProjects: ProjectItem[] = [
   {
     id: 5,
     title: 'Deema Turkish Cuisine Website',
-    description: 'Built Deema Turkish Restaurant\'s website featuring an elegant design that showcases their authentic Turkish cuisine, interactive menu display, and customer reviews. The website effectively communicates the restaurant\'s brand identity and makes it easy for customers to explore their diverse menu, view appetizing food photography, and learn about their culinary philosophy.',
+    description: 'Deema Turkish Restaurant\'s website featuring an elegant design that showcases their authentic Turkish cuisine, interactive menu display, and customer reviews. The website effectively communicates the restaurant\'s brand identity and makes it easy for customers to explore their diverse menu, view appetizing food photography, and learn about their culinary philosophy.',
     category: 'Web Development',
     image: '/images/demawebsitess.jpg',
     images: [
@@ -81,7 +81,7 @@ export const allProjects: ProjectItem[] = [
       '/images/demaabotusss.jpg'
     ],
     technologies: ['React', 'Next.js', 'Tailwind CSS'],
-    fullDescription: 'Built Deema Turkish Restaurant\'s website featuring an elegant design that showcases their authentic Turkish cuisine, interactive menu display, and customer reviews. The website effectively communicates the restaurant\'s brand identity with a clean, modern interface that highlights their diverse menu featuring traditional dishes like kebabs, mezes, and baklava. The site includes appetizing food photography, an interactive menu section with detailed descriptions and pricing, an About Us page that tells their story, customer testimonials, and easy navigation for ordering and reservations. The design emphasizes fresh ingredients, traditional recipes, and a memorable dining experience, making it easy for customers to discover Deema and explore their offerings.',
+    fullDescription: 'Deema Turkish Restaurant\'s website featuring an elegant design that showcases their authentic Turkish cuisine, interactive menu display, and customer reviews. The website effectively communicates the restaurant\'s brand identity with a clean, modern interface that highlights their diverse menu featuring traditional dishes like kebabs, mezes, and baklava. The site includes appetizing food photography, an interactive menu section with detailed descriptions and pricing, an About Us page that tells their story, customer testimonials, and easy navigation for ordering and reservations. The design emphasizes fresh ingredients, traditional recipes, and a memorable dining experience, making it easy for customers to discover Deema and explore their offerings.',
     liveUrl: 'https://www.deematurkishcuisine.com/',
     link: '/about'
   }

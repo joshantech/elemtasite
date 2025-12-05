@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import emailjs from '@emailjs/browser';
 import StaggeredMenu from '../components/StaggeredMenu';
 import Plasma from '../components/Plasma';
 import ProfileCard from '../components/ProfileCard';
@@ -35,11 +34,6 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
-  // EmailJS credentials
-  const EMAILJS_SERVICE_ID = 'service_tskw4sw';
-  const EMAILJS_TEMPLATE_ID = 'template_8rflnts';
-  const EMAILJS_PUBLIC_KEY = 'WdkuGQuFfH4JpVRaf';
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -54,32 +48,20 @@ export default function Contact() {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // Combine first and last name for EmailJS template
-      const fullName = `${formData.first_name} ${formData.last_name}`.trim();
-      const phoneFull = formData.phone_number ? `${formData.phone_country_code} ${formData.phone_number}` : '';
-      
-      // Create subject from company name or use default
-      const subject = formData.company_name 
-        ? `Contact from ${formData.company_name} - ${fullName}`
-        : `Contact from ${fullName}`;
+      // Send form data to API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Prepare template parameters matching your EmailJS template
-      // Template fields: {{subject}}, {{from_name}}, {{from_email}}, {{message}}, {{reply_to}}
-      const templateParams = {
-        subject: subject,
-        from_name: fullName || 'Unknown',
-        from_email: formData.from_email,
-        message: `Company: ${formData.company_name || 'N/A'}\nPhone: ${phoneFull || 'N/A'}\n\nMessage:\n${formData.message}`,
-        reply_to: formData.from_email
-      };
+      const data = await response.json();
 
-      // Send email using EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
 
       setSubmitStatus({ 
         type: 'success', 
@@ -95,7 +77,7 @@ export default function Contact() {
         message: ''
       });
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Contact form error:', error);
       setSubmitStatus({ 
         type: 'error', 
         message: 'Sorry, there was an error sending your message. Please try again.' 
