@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
   try {
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email service is not configured. Please contact the administrator.' },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await request.json();
     const { first_name, last_name, company_name, from_email, phone_country_code, phone_number, message } = body;
 
@@ -34,8 +42,8 @@ ${message}
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
-      to: process.env.RESEND_TO_EMAIL || 'design@elemta.com',
+      from: 'design@elemta.com',
+      to: 'design@elemta.com',
       replyTo: from_email,
       subject: subject,
       text: emailBody,
@@ -61,7 +69,7 @@ ${message}
     if (error) {
       console.error('Resend error:', error);
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: error.message || 'Failed to send email' },
         { status: 500 }
       );
     }
@@ -70,12 +78,13 @@ ${message}
       { success: true, message: 'Email sent successfully' },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact form error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: error?.message || 'Internal server error' },
       { status: 500 }
     );
   }
 }
+
 
