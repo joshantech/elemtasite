@@ -9,6 +9,7 @@ import StaggeredMenu from './components/StaggeredMenu';
 // import Prism from './components/Prism';
 import ProjectModal, { ProjectItem } from './components/ProjectModal';
 import StickyScroll from './components/ui/sticky-scroll';
+import BlurText from './components/BlurText';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
 // Register ScrollTrigger plugin
@@ -249,9 +250,14 @@ export default function Home() {
           <div className="flex flex-col md:flex-row min-h-[80vh]">
             {/* Left Panel - Text Content */}
             <div ref={textContentRef} className="w-full md:w-2/5 flex flex-col justify-center py-12 md:py-20 pr-0 md:pr-8 order-2 md:order-1">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                We are a professional technology company
-              </h2>
+              <BlurText
+                text="We are a professional technology company"
+                delay={150}
+                animateBy="words"
+                direction="top"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
+                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+              />
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
               At Elemta, we combine technical expertise with business acumen to deliver smart digital solutions that transform how you operate. Our team brings together complementary skills in software development, automation, and marketing to ensure your technology journey is smooth and successful.
               </p>

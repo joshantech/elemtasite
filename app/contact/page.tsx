@@ -6,6 +6,7 @@ import StaggeredMenu from '../components/StaggeredMenu';
 import Plasma from '../components/Plasma';
 import ProfileCard from '../components/ProfileCard';
 import { Mail, Phone, Facebook, Linkedin, Instagram } from 'lucide-react';
+import FAQAccordion from '../components/FAQAccordion';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -367,6 +368,9 @@ export default function Contact() {
             </form>
           </div>
         </div>
+
+        {/* FAQ Accordion Section */}
+        <FAQAccordion />
 
         {/* About Us Section - Moved from About Page */}
         <div className="mt-16 md:mt-24 lg:mt-32">
