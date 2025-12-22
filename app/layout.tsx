@@ -16,15 +16,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Elemta | Smart Digital Solutions",
   description: "Elemta builds software, AI solutions, and brands.",
+  manifest: '/site.webmanifest',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon-files/favicon.ico', sizes: 'any' },
+      { url: '/favicon-files/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-files/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/favicon.ico' },
+      { url: '/favicon-files/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    other: [
+      {
+        rel: 'android-chrome-192x192',
+        url: '/favicon-files/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        rel: 'android-chrome-512x512',
+        url: '/favicon-files/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/favicon-files/favicon.ico',
   },
 };
 
