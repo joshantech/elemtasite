@@ -5,9 +5,9 @@ export async function POST(request: NextRequest) {
   try {
     // Check if API key is configured
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
+      console.error('RESEND_API_KEY is not configured in environment variables');
       return NextResponse.json(
-        { error: 'Email service is not configured. Please contact the administrator.' },
+        { error: 'Email service configuration error. Please ensure RESEND_API_KEY is set in your deployment environment variables.' },
         { status: 500 }
       );
     }
