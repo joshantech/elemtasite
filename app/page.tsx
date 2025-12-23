@@ -249,17 +249,17 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 md:px-8">
           <div className="flex flex-col md:flex-col min-h-[80vh]">
             {/* Heading - Full Width Row */}
-            <div ref={textContentRef} className="w-full py-8 md:py-12 order-2 md:order-1">
+            <div ref={textContentRef} className="w-full py-8 md:py-12 order-2 md:order-1 flex flex-col items-center">
               <BlurText
                 text="We are a professional technology company"
                 delay={150}
                 animateBy="words"
                 direction="top"
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center"
                 style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
               />
               {/* Subheading Text */}
-              <div className="w-full md:max-w-4xl">
+              <div className="w-full md:max-w-4xl mx-auto text-center">
                 <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                 Elemta is a technology company focused on building practical, scalable digital solutions for modern businesses.
                 </p>

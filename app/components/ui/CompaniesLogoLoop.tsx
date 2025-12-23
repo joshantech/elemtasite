@@ -13,10 +13,14 @@ const CompaniesLogoLoop = () => {
         <div className="overflow-visible w-full logo-loop-container" style={{ minHeight: '150px', position: 'relative', marginBottom: '0.5rem', paddingBottom: '0.25rem', display: 'block', visibility: 'visible', opacity: 1, zIndex: 10 }}>
           <LogoLoop
             logos={[
-              { src: '/images/deemalogo.png', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
-              { src: '/images/onecomlogo.png', alt: 'One Community', title: 'One Community' },
-              { src: '/images/WEBONEWHITELOGO.svg', alt: 'Web NE', title: 'Web NE' },
-              { src: '/images/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' }
+              { src: '/images/logos/AldeenRealtyLogo.svg', alt: 'Aldeen Realty', title: 'Aldeen Realty' },
+              { src: '/images/logos/CarSummitLogo.svg', alt: 'Car Summit', title: 'Car Summit' },
+              { src: '/images/logos/DeemaLogo.svg', alt: 'Deema Turkish Cuisine', title: 'Deema Turkish Cuisine' },
+              { src: '/images/logos/hotchickzlogo.png', alt: 'Hot Chickz', title: 'Hot Chickz' },
+              { src: '/images/logos/NovaScanLogo.svg', alt: 'NovaScan', title: 'NovaScan' },
+              { src: '/images/logos/onecomlogo.png', alt: 'One Community', title: 'One Community' },
+              { src: '/images/logos/SweetsnstemsLogo.svg', alt: 'Sweets & Stems', title: 'Sweets & Stems' },
+              { src: '/images/logos/WEBONEWHITELOGO.svg', alt: 'WebOne', title: 'WebOne' }
             ]}
             speed={80}
             direction="left"
