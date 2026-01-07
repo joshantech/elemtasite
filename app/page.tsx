@@ -10,6 +10,8 @@ import StaggeredMenu from './components/StaggeredMenu';
 import ProjectModal, { ProjectItem } from './components/ProjectModal';
 import StickyScroll from './components/ui/sticky-scroll';
 import BlurText from './components/BlurText';
+import { HoverPreview } from './components/ui/hover-preview';
+import { HoverButton } from './components/ui/hover-button';
 // LiquidChrome component is available at './components/LiquidChrome' for future use
 
 // Register ScrollTrigger plugin
@@ -39,7 +41,6 @@ export default function Home() {
   const stickyScrollRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLElement>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,7 +52,6 @@ export default function Home() {
     const stickyScroll = stickyScrollRef.current;
     const textContent = textContentRef.current;
     const image = imageRef.current;
-    const footer = footerRef.current;
 
     // Animate hero content (on initial load, not scroll)
     if (heroContent) {
@@ -140,29 +140,6 @@ export default function Home() {
       );
     }
 
-    // Animate footer
-    if (footer) {
-      gsap.fromTo(
-        footer,
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: footer,
-            start: 'top 85%',
-            end: 'top 60%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-    }
-
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
@@ -220,14 +197,19 @@ export default function Home() {
           
           {/* Content overlaid on the light rays */}
           <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8">
-            <main ref={heroContentRef} className="mx-auto max-w-4xl text-center">
+            <main ref={heroContentRef} className="mx-auto max-w-4xl text-center flex flex-col items-center">
               <img 
                 src="/images/Logo-A3.png" 
                 alt="Elemta - Smart Digital Solutions" 
-                className="mx-auto w-auto h-auto max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] object-contain"
+                className="mx-auto w-auto h-auto max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] object-contain mb-12 sm:mb-16 md:mb-20"
                 style={{ maxHeight: '70vh' }}
                 loading="eager"
               />
+              <Link href="/contact">
+                <HoverButton className="text-white">
+                  Get Started
+                </HoverButton>
+              </Link>
             </main>
           </div>
 
@@ -242,36 +224,15 @@ export default function Home() {
       </div>
 
       {/* Second Section - Professional Technology Company */}
-      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-2 sm:pt-64 md:pt-12 pb-2 sm:pb-8 md:pb-20">
+      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-2 sm:pt-64 md:pt-12 pb-0">
        
         
         {/* Split Screen Container */}
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 md:px-8">
           <div className="flex flex-col md:flex-col min-h-[80vh]">
-            {/* Heading - Full Width Row */}
-            <div ref={textContentRef} className="w-full py-8 md:py-12 order-2 md:order-1 flex flex-col items-center">
-              <BlurText
-                text="We are a professional technology company"
-                delay={150}
-                animateBy="words"
-                direction="top"
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight text-center"
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-              />
-              {/* Subheading Text */}
-              <div className="w-full md:max-w-4xl mx-auto text-center">
-                <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Elemta is a technology company focused on building practical, scalable digital solutions for modern businesses.
-                </p>
-                <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                We specialize in custom software, AI automation, and modern web experiences designed to improve efficiency and support sustainable growth. Our team brings together complementary skills in software development, automation, and marketing to ensure your technology journey is smooth and successful.
-                </p>
-              </div>
-            </div>
-            
-            {/* Image - Full Width Below Text */}
-            <div className="w-full flex items-stretch py-8 md:py-12 order-1 md:order-2">
-              <div ref={imageRef} className="relative w-full h-full min-h-[400px] md:min-h-[600px] rounded-lg overflow-hidden">
+            {/* Image - Full Width Above Text */}
+            <div className="w-full flex items-stretch py-8 md:py-12 order-1 md:order-1">
+              <div ref={imageRef} className="relative w-full h-full min-h-[250px] md:min-h-[220px] rounded-lg overflow-hidden">
                 <img
                   src="/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
                   alt="Professional technology company"
@@ -280,17 +241,36 @@ export default function Home() {
                 />
               </div>
             </div>
+            
+            {/* Heading - Full Width Row */}
+            <div ref={textContentRef} className="w-full py-8 md:py-12 order-2 md:order-2 flex flex-col items-center justify-center">
+              <div className="transition-transform duration-300 ease-out hover:scale-[1.08] cursor-default w-full px-4">
+                <BlurText
+                  text="A Professional Technology Company"
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight justify-center mx-auto"
+                  style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                />
+              </div>
+              {/* Subheading Text */}
+              <div className="w-full md:max-w-4xl mx-auto text-center">
+                <HoverPreview />
+              </div>
+              
+              {/* Logo at bottom of section */}
+              <div className="w-full pt-8 pb-4 sm:pt-10 sm:pb-6 md:pt-12 md:pb-8 flex justify-center items-center">
+                <img 
+                  src="/images/BottomHomePage.svg" 
+                  alt="Elemta" 
+                  className='w-full max-w-[60vw] sm:max-w-[50vw] md:max-w-[40vw] lg:max-w-[35vw] xl:max-w-[30vw] h-auto object-contain'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* ELEMTA Footer - Bottom of Homepage */}
-      <footer ref={footerRef} className='group bg-black relative overflow-visible pt-4 pb-4 sm:pt-6 sm:pb-6 md:pt-0 md:pb-0'>
-        <h1 className='text-[16vw] translate-y-12 sm:translate-y-16 md:translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear relative z-20'>
-          elemta
-        </h1>
-        <div className='bg-black h-40 relative z-0 grid place-content-center text-2xl rounded-tr-full rounded-tl-full'></div>
-      </footer>
 
       {/* Project Modal */}
       <ProjectModal
