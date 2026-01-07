@@ -5,9 +5,9 @@ import StaggeredMenu from '../components/StaggeredMenu';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
@@ -20,7 +20,7 @@ const socialItems = [
 const servicesItems = [
   { 
     link: '/services/softwares', 
-    text: 'Software Design & Development', 
+    text: 'Software Development', 
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop' 
   },
   { 

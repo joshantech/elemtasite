@@ -8,7 +8,7 @@ import CompaniesLogoLoop from './CompaniesLogoLoop';
 const Component = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div className='bg-black sticky-scroll-container' ref={ref}>
-        <section className='text-white  h-[33vh]  w-full bg-black  grid place-content-center relative overflow-hidden'>
+        <section className='text-white  h-[33vh]  w-full bg-black  grid place-content-center relative overflow-hidden pt-8 sm:pt-12 md:pt-16 lg:pt-20'>
           <Particles
             particleCount={100}
             particleSpread={2}

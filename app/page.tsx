@@ -21,9 +21,9 @@ if (typeof window !== 'undefined') {
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
@@ -118,27 +118,27 @@ export default function Home() {
     }
 
     // Animate image
-    if (image) {
-      gsap.fromTo(
-        image,
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: image,
-            start: 'top 80%',
-            end: 'top 50%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-    }
+    // if (image) {
+    //   gsap.fromTo(
+    //     image,
+    //     {
+    //       opacity: 0,
+    //       y: 50
+    //     },
+    //     {
+    //       opacity: 1,
+    //       y: 0,
+    //       duration: 2,
+    //       ease: 'power3.out',
+    //       scrollTrigger: {
+    //         trigger: image,
+    //         start: 'top 80%',
+    //         end: 'top 50%',
+    //         toggleActions: 'play none none reverse'
+    //       }
+    //     }
+    //   );
+    // }
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -224,26 +224,11 @@ export default function Home() {
       </div>
 
       {/* Second Section - Professional Technology Company */}
-      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-2 sm:pt-64 md:pt-12 pb-0">
-       
-        
-        {/* Split Screen Container */}
+      {/* Text section commented out
+      <section ref={secondPageRef as any} id="section2" className="relative bg-black overflow-hidden pt-2 sm:pt-64 md:pt-12 md:pb-0 pb-0">
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="flex flex-col md:flex-col min-h-[80vh]">
-            {/* Image - Full Width Above Text */}
-            <div className="w-full flex items-stretch py-8 md:py-12 order-1 md:order-1">
-              <div ref={imageRef} className="relative w-full h-full min-h-[250px] md:min-h-[220px] rounded-lg overflow-hidden">
-                <img
-                  src="/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
-                  alt="Professional technology company"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              </div>
-            </div>
-            
-            {/* Heading - Full Width Row */}
-            <div ref={textContentRef} className="w-full py-8 md:py-12 order-2 md:order-2 flex flex-col items-center justify-center">
+          <div className="flex flex-col md:flex-col">
+            <div ref={textContentRef} className="w-full pt-8 md:pt-12 md:pb-0 pb-0 order-2 md:order-2 flex flex-col items-center justify-center">
               <div className="transition-transform duration-300 ease-out hover:scale-[1.08] cursor-default w-full px-4">
                 <BlurText
                   text="A Professional Technology Company"
@@ -254,21 +239,23 @@ export default function Home() {
                   style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                 />
               </div>
-              {/* Subheading Text */}
               <div className="w-full md:max-w-4xl mx-auto text-center">
                 <HoverPreview />
               </div>
-              
-              {/* Logo at bottom of section */}
-              <div className="w-full pt-8 pb-4 sm:pt-10 sm:pb-6 md:pt-12 md:pb-8 flex justify-center items-center">
-                <img 
-                  src="/images/BottomHomePage.svg" 
-                  alt="Elemta" 
-                  className='w-full max-w-[60vw] sm:max-w-[50vw] md:max-w-[40vw] lg:max-w-[35vw] xl:max-w-[30vw] h-auto object-contain'
-                />
-              </div>
             </div>
           </div>
+        </div>
+      </section>
+      */}
+      
+      {/* Logo section - active */}
+      <section className="relative bg-black overflow-hidden pt-4 pb-0 sm:pt-6 sm:pb-1 md:pt-6 md:pb-0 lg:pt-6 lg:pb-0">
+        <div className="w-full flex justify-center items-center">
+          <img 
+            src="/images/BottomHomePage.svg" 
+            alt="Elemta" 
+            className='w-full max-w-[80vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[65vw] xl:max-w-[60vw] h-auto object-contain'
+          />
         </div>
       </section>
 

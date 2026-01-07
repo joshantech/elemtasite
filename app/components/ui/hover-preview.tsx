@@ -57,6 +57,12 @@ const styles = `
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
   }
+  
+  @media (min-width: 768px) {
+    .text-block p {
+      margin-bottom: 1em;
+    }
+  }
 
   .text-block p:nth-child(1) { animation-delay: 0.2s; }
   .text-block p:nth-child(2) { animation-delay: 0.4s; }
@@ -255,15 +261,14 @@ export function HoverPreview() {
 
   const updatePosition = useCallback((e: React.MouseEvent | MouseEvent) => {
     const cardWidth = 300
-    const cardHeight = 250 // Approximate card height
-    const offsetX = 15
-    const offsetY = 20 // Gap between cursor and card bottom
+    const cardHeight = 280 // Approximate card height
+    const offsetY = 15 // Small gap between cursor and card
 
-    // Position card so its bottom-left is above the cursor
-    let x = e.clientX - cardWidth / 2 // Center horizontally on cursor
-    let y = e.clientY - cardHeight - offsetY // Position above cursor
+    // Position card centered horizontally on cursor, directly above it
+    let x = e.clientX - cardWidth / 2
+    let y = e.clientY - cardHeight - offsetY
 
-    // Boundary checks - keep card on screen
+    // Boundary checks - keep card on screen horizontally
     if (x + cardWidth > window.innerWidth - 20) {
       x = window.innerWidth - cardWidth - 20
     }

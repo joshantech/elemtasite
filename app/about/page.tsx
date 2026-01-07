@@ -6,9 +6,9 @@ import { Linkedin, Instagram, Facebook, MapPin, Star } from 'lucide-react';
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
