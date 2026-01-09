@@ -118,6 +118,24 @@ export default function About() {
           </p>
         </div>
 
+        {/* Our Story Section - How Elemta Was Founded */}
+        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            
+            <div className="space-y-6 sm:space-y-8 text-white">
+              <div className="prose prose-invert max-w-none">
+                <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                  Elemta was founded to make technology practical, accessible, and effective for businesses of all sizes. We saw too many companies held back by outdated systems, inefficient workflows, and digital solutions that were either too complex or out of reach.
+                </p>
+                
+                <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                  With expertise spanning software development, automation, and business operations, we build custom software, modern websites, AI-driven automation, and focused marketing solutions that help businesses run better and grow smarter. Elemta exists to remove friction from technology—so our clients can focus on what matters most.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Testimonials Section */}
         <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 px-4 relative z-10">
           <Testimonials testimonials={testimonials} />
@@ -185,35 +203,6 @@ export default function About() {
                     Facebook
                   </span>
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Our Story Section - How Elemta Was Founded */}
-        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32 px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-8 sm:mb-12 md:mb-16" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-              Our Story
-            </h2>
-            
-            <div className="space-y-6 sm:space-y-8 text-white">
-              <div className="prose prose-invert max-w-none">
-                <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Elemta was founded with a simple yet powerful vision: to make technology accessible and transformative for businesses of all sizes. We recognized that many companies struggle with outdated systems, inefficient processes, and the overwhelming complexity of modern digital solutions.
-                </p>
-                
-                <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Our founders came together with complementary expertise—one specializing in software development and automation, the other in business operations and client relations. They saw firsthand how businesses were being left behind because they couldn't afford or navigate the digital transformation landscape.
-                </p>
-                
-                <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  The name "Elemta" reflects our core mission: to be the essential element that helps businesses evolve and thrive in the digital age. We believe that every business, regardless of size, deserves access to smart digital solutions that can streamline operations, enhance customer experiences, and drive growth.
-                </p>
-                
-                <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Today, we continue to build on this foundation, creating custom software, modern websites, intelligent automation, and comprehensive marketing solutions that empower our clients to succeed. We exist to make your journey a little easier—because when technology works seamlessly, businesses can focus on what they do best.
-                </p>
               </div>
             </div>
           </div>

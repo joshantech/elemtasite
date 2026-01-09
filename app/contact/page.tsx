@@ -2,8 +2,9 @@
 
 import { useState, FormEvent } from 'react';
 import StaggeredMenu from '../components/StaggeredMenu';
-import Plasma from '../components/Plasma';
-import ProfileCard from '../components/ProfileCard';
+import { ShootingStars } from '../components/ui/shooting-stars';
+import { HoverButton } from '../components/ui/hover-button';
+// import ProfileCard from '../components/ProfileCard';
 import { Mail, Phone, Facebook, Linkedin, Instagram } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
 
@@ -89,16 +90,55 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-black py-8 sm:py-12 md:py-20 px-4 sm:px-6 md:px-8 relative overflow-hidden">
-      {/* Plasma Background */}
-      <div className="fixed inset-0 z-0 opacity-30">
-        <Plasma 
-          color="#C0C0C0"
-          speed={0.6}
-          direction="forward"
-          scale={1.1}
-          opacity={0.8}
-          mouseInteractive={true}
+      {/* Shooting Stars Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(0,0,0,0)_80%)]" />
+        <div className="stars absolute inset-0" />
+        <ShootingStars
+          starColor="#9E00FF"
+          trailColor="#2EB9DF"
+          minSpeed={15}
+          maxSpeed={35}
+          minDelay={1000}
+          maxDelay={3000}
         />
+        <ShootingStars
+          starColor="#FF0099"
+          trailColor="#FFB800"
+          minSpeed={10}
+          maxSpeed={25}
+          minDelay={2000}
+          maxDelay={4000}
+        />
+        <ShootingStars
+          starColor="#00FF9E"
+          trailColor="#00B8FF"
+          minSpeed={20}
+          maxSpeed={40}
+          minDelay={1500}
+          maxDelay={3500}
+        />
+        <style dangerouslySetInnerHTML={{__html: `
+          .stars {
+            background-image: 
+              radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+              radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+              radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+              radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+              radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+              radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s ease-in-out infinite;
+            opacity: 0.5;
+          }
+
+          @keyframes twinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+          }
+        `}} />
       </div>
 
       {/* Content with relative z-index */}
@@ -135,7 +175,7 @@ export default function Contact() {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Left Column - Contact Information Panel */}
-          <div className="rounded-2xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600">
+          <div className="rounded-2xl p-6 sm:p-8 md:p-10 bg-black border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
               Contact Us
             </h2>
@@ -209,7 +249,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                    placeholder="First"
+                    placeholder=""
                     style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                   />
                 </div>
@@ -225,7 +265,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                    placeholder="Last"
+                    placeholder=""
                     style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                   />
                 </div>
@@ -243,7 +283,7 @@ export default function Contact() {
                   value={formData.company_name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  placeholder="Company"
+                  placeholder=""
                   style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                 />
               </div>
@@ -261,7 +301,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  placeholder="johndoe@gmail.com"
+                  placeholder=""
                   style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                 />
               </div>
@@ -293,7 +333,7 @@ export default function Contact() {
                     value={formData.phone_number}
                     onChange={handleChange}
                     className="flex-1 px-4 py-3 bg-transparent border border-white border-opacity-30 rounded-lg text-white text-base placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                    placeholder="(555) 555-5555"
+                    placeholder=""
                     style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                   />
                 </div>
@@ -312,7 +352,7 @@ export default function Contact() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all resize-none"
-                  placeholder="Tell us what we can help you with"
+                  placeholder=""
                   style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                 />
               </div>
@@ -332,11 +372,10 @@ export default function Contact() {
               )}
 
               {/* Send Message Button */}
-              <button
+              <HoverButton
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 text-white font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                className="w-full text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? 'Sending...' : (
                   <>
@@ -346,7 +385,7 @@ export default function Contact() {
                     </svg>
                   </>
                 )}
-              </button>
+              </HoverButton>
             </form>
           </div>
         </div>
@@ -355,11 +394,10 @@ export default function Contact() {
         <FAQAccordion />
 
         {/* About Us Section - Moved from About Page */}
-        <div className="mt-16 md:mt-24 lg:mt-32">
+        {/* <div className="mt-16 md:mt-24 lg:mt-32">
          
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start justify-items-center max-w-5xl mx-auto">
-            {/* Joshan Christie Column */}
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Joshan Christie"
@@ -375,7 +413,6 @@ export default function Contact() {
               />
             </div>
 
-            {/* Aseel Batuq Column */}
             <div className="flex flex-col items-center gap-8">
               <ProfileCard
                 name="Aseel Batuq"
@@ -391,7 +428,7 @@ export default function Contact() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         </div>
       </div>
     </div>

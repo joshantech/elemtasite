@@ -57,8 +57,8 @@ export default function FAQAccordion() {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className={`bg-black border border-white border-opacity-20 rounded-lg transition-all duration-300 hover:border-opacity-40 ${
-                openIndex === index ? 'border-opacity-40' : ''
+              className={`bg-black rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] ${
+                openIndex === index ? 'shadow-[0_0_25px_rgba(255,255,255,0.4)]' : ''
               }`}
             >
               <button
@@ -90,7 +90,7 @@ export default function FAQAccordion() {
                   openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="px-6 pb-5 md:px-8 md:pb-6 pl-16 md:pl-20 border-t border-white border-opacity-20">
+                <div className="px-6 pb-5 md:px-8 md:pb-6 pl-16 md:pl-20 border-t border-white border-opacity-10">
                   <p
                     className="text-white text-sm sm:text-base md:text-lg leading-relaxed opacity-90 pt-4"
                     style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
