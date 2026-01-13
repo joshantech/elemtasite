@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
 import LightRays from './components/LightRays';
 import StaggeredMenu from './components/StaggeredMenu';
 // import Prism from './components/Prism';
 import ProjectModal, { ProjectItem } from './components/ProjectModal';
+import GetStartedModal from './components/GetStartedModal';
 import StickyScroll from './components/ui/sticky-scroll';
 import BlurText from './components/BlurText';
 import { HoverPreview } from './components/ui/hover-preview';
@@ -43,6 +43,7 @@ export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGetStartedModalOpen, setIsGetStartedModalOpen] = useState(false);
 
   // Scroll animations
   useEffect(() => {
@@ -205,11 +206,12 @@ export default function Home() {
                 style={{ maxHeight: '70vh' }}
                 loading="eager"
               />
-              <Link href="/contact">
-                <HoverButton className="text-white">
-                  Get Started
-                </HoverButton>
-              </Link>
+              <HoverButton 
+                className="text-white"
+                onClick={() => setIsGetStartedModalOpen(true)}
+              >
+                Get Started
+              </HoverButton>
             </main>
           </div>
 
@@ -264,6 +266,12 @@ export default function Home() {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+      />
+
+      {/* Get Started Modal */}
+      <GetStartedModal
+        isOpen={isGetStartedModalOpen}
+        onClose={() => setIsGetStartedModalOpen(false)}
       />
     </div>
   );
