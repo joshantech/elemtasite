@@ -203,4 +203,24 @@
     visibility: visible !important;
     opacity: 1 !important;
   }
+  
+  /* Show mobile images and hide desktop images on mobile */
+  .mobile-bottom-image {
+    display: block !important;
+  }
+  
+  .desktop-bottom-image {
+    display: none !important;
+  }
+}
+
+/* Show desktop images and hide mobile images on desktop */
+@media (min-width: 769px) {
+  .mobile-bottom-image {
+    display: none !important;
+  }
+  
+  .desktop-bottom-image {
+    display: block !important;
+  }
 }

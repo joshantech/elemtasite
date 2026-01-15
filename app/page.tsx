@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LightRays from './components/LightRays';
 import StaggeredMenu from './components/StaggeredMenu';
 // import Prism from './components/Prism';
 import ProjectModal, { ProjectItem } from './components/ProjectModal';
-import GetStartedModal from './components/GetStartedModal';
 import StickyScroll from './components/ui/sticky-scroll';
 import BlurText from './components/BlurText';
 import { HoverPreview } from './components/ui/hover-preview';
@@ -34,6 +34,7 @@ const socialItems = [
 ];
  
 export default function Home() {
+  const router = useRouter();
   const firstPageRef = useRef<HTMLElement>(null);
   const secondPageRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,7 +44,6 @@ export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isGetStartedModalOpen, setIsGetStartedModalOpen] = useState(false);
 
   // Scroll animations
   useEffect(() => {
@@ -208,7 +208,7 @@ export default function Home() {
               />
               <HoverButton 
                 className="text-white"
-                onClick={() => setIsGetStartedModalOpen(true)}
+                onClick={() => router.push('/get-started')}
               >
                 Get Started
               </HoverButton>
@@ -266,12 +266,6 @@ export default function Home() {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-      />
-
-      {/* Get Started Modal */}
-      <GetStartedModal
-        isOpen={isGetStartedModalOpen}
-        onClose={() => setIsGetStartedModalOpen(false)}
       />
     </div>
   );

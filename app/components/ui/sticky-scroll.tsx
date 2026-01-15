@@ -63,7 +63,12 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                 <img
                   src='/images/sticky-scroll/smarter.svg'
                   alt=''
-                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md '
+                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md desktop-bottom-image'
+                />
+                <img
+                  src='/images/sticky-scroll/smartermobile.svg'
+                  alt=''
+                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
               </figure>
             </div>
@@ -86,7 +91,12 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                 <img
                   src='/images/sticky-scroll/faster.svg'
                   alt=''
-                  className='transition-all duration-300 h-full w-full  align-bottom object-cover rounded-md '
+                  className='transition-all duration-300 h-full w-full  align-bottom object-cover rounded-md desktop-bottom-image'
+                />
+                <img
+                  src='/images/sticky-scroll/fastermobile.svg'
+                  alt=''
+                  className='transition-all duration-300 h-full w-full  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
               </figure>
             </div>
@@ -123,7 +133,12 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                 <img
                   src='/images/sticky-scroll/further.svg'
                   alt=''
-                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md '
+                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md desktop-bottom-image'
+                />
+                <img
+                  src='/images/sticky-scroll/furthermobile.svg'
+                  alt=''
+                  className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
               </figure>
             </div>

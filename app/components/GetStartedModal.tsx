@@ -1,18 +1,80 @@
 'use client';
 
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Check, Loader2 } from 'lucide-react';
+import { Button } from './ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from './ui/card';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Textarea } from './ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
+import { Checkbox } from './ui/checkbox';
+import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 import { ShootingStars } from './ui/shooting-stars';
-import { HoverButton } from './ui/hover-button';
+import { Confetti, type ConfettiRef } from './ui/confetti';
+import confetti from 'canvas-confetti';
 
 interface GetStartedModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const steps = [
+  { id: 'personal', title: 'Personal Info' },
+  { id: 'business', title: 'Business Details' },
+  { id: 'services', title: 'Services' },
+  { id: 'additional', title: 'Additional Info' },
+];
+
+interface FormData {
+  first_name: string;
+  last_name: string;
+  business_name: string;
+  phone_country_code: string;
+  phone_number: string;
+  email: string;
+  website: string;
+  services: string[];
+  other_info: string;
+}
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, x: -50, transition: { duration: 0.2 } },
+};
+
+const serviceOptions = ['Website', 'Software', 'AI Automations', 'Marketing & Branding', 'Other'];
+
 export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [formData, setFormData] = useState({
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const confettiRef = useRef<ConfettiRef>(null);
+  const [formData, setFormData] = useState<FormData>({
     first_name: '',
     last_name: '',
     business_name: '',
@@ -20,19 +82,9 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
     phone_number: '',
     email: '',
     website: '',
-    services: [] as string[],
-    other_info: ''
+    services: [],
+    other_info: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
-
-  const serviceOptions = [
-    'Website',
-    'Software',
-    'AI Automations',
-    'Marketing & Branding',
-    'Other'
-  ];
 
   useEffect(() => {
     if (isOpen) {
@@ -61,9 +113,10 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
         email: '',
         website: '',
         services: [],
-        other_info: ''
+        other_info: '',
       });
-      setSubmitStatus({ type: null, message: '' });
+      setCurrentStep(0);
+      setShowSuccess(false);
     }, 200);
   };
 
@@ -73,37 +126,35 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const updateFormData = (field: keyof FormData, value: string | string[]) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleServiceChange = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter(s => s !== service)
-        : [...prev.services, service]
-    }));
+  const toggleService = (service: string) => {
+    setFormData((prev) => {
+      const services = [...prev.services];
+      if (services.includes(service)) {
+        return { ...prev, services: services.filter((s) => s !== service) };
+      } else {
+        return { ...prev, services: [...services, service] };
+      }
+    });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // Validate services selection
-    if (formData.services.length === 0) {
-      setSubmitStatus({ 
-        type: 'error', 
-        message: 'Please select at least one service of interest.' 
-      });
-      return;
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep((prev) => prev + 1);
     }
+  };
 
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prev) => prev - 1);
+    }
+  };
+
+  const handleSubmit = async () => {
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
 
     try {
       const response = await fetch('/api/get-started', {
@@ -120,36 +171,79 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
         throw new Error(data.error || 'Failed to send message');
       }
 
-      setSubmitStatus({ 
-        type: 'success', 
-        message: 'Thank you for your interest! We\'ll get back to you soon.' 
-      });
-      
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          first_name: '',
-          last_name: '',
-          business_name: '',
-          phone_country_code: '+1',
-          phone_number: '',
-          email: '',
-          website: '',
-          services: [],
-          other_info: ''
-        });
-        setTimeout(() => {
-          handleClose();
-        }, 1500);
-      }, 2000);
-    } catch (error) {
-      console.error('Get started form error:', error);
-      setSubmitStatus({ 
-        type: 'error', 
-        message: 'Sorry, there was an error sending your message. Please try again.' 
-      });
-    } finally {
+      // Show success screen
+      setShowSuccess(true);
       setIsSubmitting(false);
+      
+      // Trigger confetti animation
+      setTimeout(() => {
+        // Fireworks effect
+        const duration = 3 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+        const randomInRange = (min: number, max: number) =>
+          Math.random() * (max - min) + min;
+
+        const interval = window.setInterval(() => {
+          const timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          const particleCount = 50 * (timeLeft / duration);
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          });
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          });
+        }, 250);
+
+        // Also fire from center
+        confettiRef.current?.fire({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }, 100);
+      
+      // Reset form after showing success
+      setFormData({
+        first_name: '',
+        last_name: '',
+        business_name: '',
+        phone_country_code: '+1',
+        phone_number: '',
+        email: '',
+        website: '',
+        services: [],
+        other_info: '',
+      });
+      setCurrentStep(0);
+    } catch (error: any) {
+      console.error('Get started form error:', error);
+      toast.error('Sorry, there was an error sending your message. Please try again.');
+      setIsSubmitting(false);
+    }
+  };
+
+  // Check if step is valid for next button
+  const isStepValid = () => {
+    switch (currentStep) {
+      case 0:
+        return formData.first_name.trim() !== '' && formData.last_name.trim() !== '' && formData.email.trim() !== '';
+      case 1:
+        return formData.business_name.trim() !== '' && formData.phone_number.trim() !== '';
+      case 2:
+        return formData.services.length > 0;
+      default:
+        return true;
     }
   };
 
@@ -157,13 +251,14 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center p-4 transition-opacity duration-200 ${
+      className={cn(
+        'fixed inset-0 z-[9999] flex items-center justify-center p-4 transition-opacity duration-200',
         isAnimating ? 'opacity-100' : 'opacity-0'
-      }`}
+      )}
       onClick={handleBackdropClick}
       aria-hidden={!isOpen}
     >
-      {/* Background with Shooting Stars - Same as Contact Page */}
+      {/* Background with Shooting Stars */}
       <div className="fixed inset-0 z-0 bg-black">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(0,0,0,0)_80%)]" />
         <div className="stars absolute inset-0" />
@@ -216,9 +311,10 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
 
       {/* Modal Content */}
       <div
-        className={`relative z-10 w-full max-w-2xl bg-black border border-white/20 rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.3)] max-h-[90vh] overflow-y-auto transition-transform duration-200 ${
+        className={cn(
+          'relative z-10 w-full max-w-2xl bg-black border border-white/20 rounded-3xl shadow-[0_0_20px_rgba(255,255,255,0.3)] max-h-[90vh] overflow-y-auto transition-transform duration-200',
           isAnimating ? 'scale-100' : 'scale-95'
-        }`}
+        )}
         role="dialog"
         aria-modal="true"
         aria-labelledby="get-started-modal-title"
@@ -233,223 +329,398 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
           <X className="w-6 h-6" />
         </button>
 
-        {/* Modal Content */}
+        {/* Confetti canvas - positioned absolutely behind content */}
+        {showSuccess && (
+          <Confetti
+            ref={confettiRef}
+            className="absolute left-0 top-0 z-[1] w-full h-full pointer-events-none"
+            manualstart={true}
+          />
+        )}
+
         <div className="p-6 sm:p-8 md:p-10">
-          {/* Header */}
-          <h2
-            id="get-started-modal-title"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8"
-            style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-          >
-            Get Started
-          </h2>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* First Name and Last Name Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label htmlFor="first_name" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  First Name <span className="text-gray-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="first_name"
-                  name="first_name"
-                  value={formData.first_name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  placeholder=""
-                  style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                />
-              </div>
-              <div>
-                <label htmlFor="last_name" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Last Name <span className="text-gray-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  value={formData.last_name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  placeholder=""
-                  style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                />
-              </div>
-            </div>
-
-            {/* Business Name */}
-            <div>
-              <label htmlFor="business_name" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Business Name <span className="text-gray-400">*</span>
-              </label>
-              <input
-                type="text"
-                id="business_name"
-                name="business_name"
-                value={formData.business_name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                placeholder=""
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+          {showSuccess ? (
+            /* Success Screen */
+            <motion.div
+              className="flex flex-col items-center justify-center py-8 min-h-[400px]"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.img
+                src="/images/BottomHomePage.svg"
+                alt="Success"
+                className="w-full max-w-[600px] mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               />
-            </div>
-
-            {/* Phone Number */}
-            <div>
-              <label htmlFor="phone_number" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Phone Number <span className="text-gray-400">*</span>
-              </label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <select
-                  id="phone_country_code"
-                  name="phone_country_code"
-                  value={formData.phone_country_code}
-                  onChange={handleChange}
-                  className="px-3 sm:px-4 py-3 bg-transparent border border-white border-opacity-30 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+              <motion.p
+                className="text-white text-xl md:text-2xl text-center"
+                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Will be in touch with you shortly
+              </motion.p>
+            </motion.div>
+          ) : (
+            <>
+              {/* Progress indicator */}
+              <motion.div
+                className="mb-8"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+            <div className="flex justify-between mb-2">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  className="flex flex-col items-center"
+                  whileHover={{ scale: 1.1 }}
                 >
-                  <option value="+1" className="bg-gray-900">US +1</option>
-                  <option value="+44" className="bg-gray-900">UK +44</option>
-                  <option value="+33" className="bg-gray-900">FR +33</option>
-                  <option value="+49" className="bg-gray-900">DE +49</option>
-                  <option value="+81" className="bg-gray-900">JP +81</option>
-                </select>
-                <input
-                  type="tel"
-                  id="phone_number"
-                  name="phone_number"
-                  value={formData.phone_number}
-                  onChange={handleChange}
-                  required
-                  className="flex-1 px-4 py-3 bg-transparent border border-white border-opacity-30 rounded-lg text-white text-base placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                  placeholder=""
-                  style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Email <span className="text-gray-400">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                placeholder=""
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-              />
-            </div>
-
-            {/* Website (Optional) */}
-            <div>
-              <label htmlFor="website" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Website <span className="text-gray-400">(Optional)</span>
-              </label>
-              <input
-                type="url"
-                id="website"
-                name="website"
-                value={formData.website}
-                onChange={handleChange}
-                className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
-                placeholder="https://"
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-              />
-            </div>
-
-            {/* Services Checklist */}
-            <div>
-              <label className="block text-white mb-3 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Services of Interest <span className="text-gray-400">*</span>
-              </label>
-              <div className="space-y-2">
-                {serviceOptions.map((service) => (
-                  <label
-                    key={service}
-                    className="flex items-center gap-3 cursor-pointer group"
+                  <motion.div
+                    className={cn(
+                      'w-4 h-4 rounded-full cursor-pointer transition-colors duration-300',
+                      index < currentStep
+                        ? 'bg-white'
+                        : index === currentStep
+                          ? 'bg-white ring-4 ring-white/20'
+                          : 'bg-white/30',
+                    )}
+                    onClick={() => {
+                      // Only allow going back or to completed steps
+                      if (index <= currentStep) {
+                        setCurrentStep(index);
+                      }
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  />
+                  <motion.span
+                    className={cn(
+                      'text-sm md:text-base mt-1.5 hidden sm:block text-white',
+                      index === currentStep
+                        ? 'font-medium'
+                        : 'opacity-70',
+                    )}
+                    style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                   >
-                    <input
-                      type="checkbox"
-                      checked={formData.services.includes(service)}
-                      onChange={() => handleServiceChange(service)}
-                      className="w-5 h-5 rounded border-white border-opacity-30 bg-transparent text-white focus:ring-2 focus:ring-white focus:ring-opacity-50 cursor-pointer accent-white"
-                      style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-                    />
-                    <span
-                      className="text-white text-base group-hover:text-gray-200 transition-colors"
+                    {step.title}
+                  </motion.span>
+                </motion.div>
+              ))}
+            </div>
+            <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden mt-2">
+              <motion.div
+                className="h-full bg-white"
+                initial={{ width: 0 }}
+                animate={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Form card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Card className="border-white/20 shadow-md rounded-3xl overflow-hidden bg-transparent text-white">
+              <div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStep}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={contentVariants}
+                  >
+                    {/* Step 1: Personal Info */}
+                    {currentStep === 0 && (
+                      <>
+                        <CardHeader>
+                          <CardTitle className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Tell us about yourself
+                          </CardTitle>
+                          <CardDescription className="text-white/70" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Let&apos;s start with some basic information
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="first_name" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              First Name <span className="text-gray-400">*</span>
+                            </Label>
+                            <Input
+                              id="first_name"
+                              placeholder="John"
+                              value={formData.first_name}
+                              onChange={(e) => updateFormData('first_name', e.target.value)}
+                              className="bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="last_name" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Last Name <span className="text-gray-400">*</span>
+                            </Label>
+                            <Input
+                              id="last_name"
+                              placeholder="Doe"
+                              value={formData.last_name}
+                              onChange={(e) => updateFormData('last_name', e.target.value)}
+                              className="bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="email" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Email Address <span className="text-gray-400">*</span>
+                            </Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="john@example.com"
+                              value={formData.email}
+                              onChange={(e) => updateFormData('email', e.target.value)}
+                              className="bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+                        </CardContent>
+                      </>
+                    )}
+
+                    {/* Step 2: Business Details */}
+                    {currentStep === 1 && (
+                      <>
+                        <CardHeader>
+                          <CardTitle className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Business Details
+                          </CardTitle>
+                          <CardDescription className="text-white/70" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Tell us about your business
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="business_name" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Business Name <span className="text-gray-400">*</span>
+                            </Label>
+                            <Input
+                              id="business_name"
+                              placeholder="Your Company"
+                              value={formData.business_name}
+                              onChange={(e) => updateFormData('business_name', e.target.value)}
+                              className="bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="phone_number" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Phone Number <span className="text-gray-400">*</span>
+                            </Label>
+                            <div className="flex gap-2">
+                              <Select
+                                value={formData.phone_country_code}
+                                onValueChange={(value) => updateFormData('phone_country_code', value)}
+                              >
+                                <SelectTrigger className="w-[120px] bg-transparent border-white/30 text-white focus:ring-2 focus:ring-white/20 focus:border-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="bg-black border-white/30 text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                                  <SelectItem value="+1" className="focus:bg-white/10">US +1</SelectItem>
+                                  <SelectItem value="+44" className="focus:bg-white/10">UK +44</SelectItem>
+                                  <SelectItem value="+33" className="focus:bg-white/10">FR +33</SelectItem>
+                                  <SelectItem value="+49" className="focus:bg-white/10">DE +49</SelectItem>
+                                  <SelectItem value="+81" className="focus:bg-white/10">JP +81</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <Input
+                                id="phone_number"
+                                type="tel"
+                                placeholder="Phone number"
+                                value={formData.phone_number}
+                                onChange={(e) => updateFormData('phone_number', e.target.value)}
+                                className="flex-1 bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                              />
+                            </div>
+                          </motion.div>
+
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="website" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Website <span className="text-gray-400">(Optional)</span>
+                            </Label>
+                            <Input
+                              id="website"
+                              type="url"
+                              placeholder="https://"
+                              value={formData.website}
+                              onChange={(e) => updateFormData('website', e.target.value)}
+                              className="bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+                        </CardContent>
+                      </>
+                    )}
+
+                    {/* Step 3: Services */}
+                    {currentStep === 2 && (
+                      <>
+                        <CardHeader>
+                          <CardTitle className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Services of Interest
+                          </CardTitle>
+                          <CardDescription className="text-white/70" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Which services are you interested in? <span className="text-gray-400">*</span>
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <div className="grid grid-cols-1 gap-2">
+                              {serviceOptions.map((service, index) => (
+                                <motion.div
+                                  key={service}
+                                  className="flex items-center space-x-2 rounded-md border border-white/30 p-3 cursor-pointer hover:bg-white/10 transition-colors"
+                                  whileHover={{ scale: 1.02 }}
+                                  whileTap={{ scale: 0.98 }}
+                                  transition={{ duration: 0.2 }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: {
+                                      delay: 0.05 * index,
+                                      duration: 0.3,
+                                    },
+                                  }}
+                                  onClick={() => toggleService(service)}
+                                >
+                                  <Checkbox
+                                    id={`service-${service}`}
+                                    checked={formData.services.includes(service)}
+                                    onCheckedChange={() => toggleService(service)}
+                                    className="border-white/50 data-[state=checked]:bg-white data-[state=checked]:border-white"
+                                  />
+                                  <Label
+                                    htmlFor={`service-${service}`}
+                                    className="cursor-pointer w-full text-white"
+                                    style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                                  >
+                                    {service}
+                                  </Label>
+                                </motion.div>
+                              ))}
+                            </div>
+                            {formData.services.length === 0 && (
+                              <p className="text-red-400 text-xs mt-1" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                                Please select at least one service
+                              </p>
+                            )}
+                          </motion.div>
+                        </CardContent>
+                      </>
+                    )}
+
+                    {/* Step 4: Additional Info */}
+                    {currentStep === 3 && (
+                      <>
+                        <CardHeader>
+                          <CardTitle className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Additional Information
+                          </CardTitle>
+                          <CardDescription className="text-white/70" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                            Anything else we should know?
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <motion.div variants={fadeInUp} className="space-y-2">
+                            <Label htmlFor="other_info" className="text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                              Any Other Information
+                            </Label>
+                            <Textarea
+                              id="other_info"
+                              placeholder="Tell us more about your project..."
+                              value={formData.other_info}
+                              onChange={(e) => updateFormData('other_info', e.target.value)}
+                              className="min-h-[120px] bg-transparent border-white/30 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/20 focus:border-white transition-all"
+                              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                            />
+                          </motion.div>
+                        </CardContent>
+                      </>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+
+                <CardFooter className="flex justify-between pt-6 pb-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={prevStep}
+                      disabled={currentStep === 0}
+                      className="flex items-center gap-1 transition-all duration-300 rounded-2xl border-white/30 text-white hover:bg-white/10 disabled:opacity-50"
                       style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                     >
-                      {service}
-                    </span>
-                  </label>
-                ))}
+                      <ChevronLeft className="h-4 w-4" /> Back
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      type="button"
+                      onClick={currentStep === steps.length - 1 ? handleSubmit : nextStep}
+                      disabled={!isStepValid() || isSubmitting}
+                      className="flex items-center gap-1 transition-all duration-300 rounded-2xl bg-white text-black hover:bg-white/90 disabled:opacity-50"
+                      style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+                        </>
+                      ) : (
+                        <>
+                          {currentStep === steps.length - 1 ? 'Submit' : 'Next'}
+                          {currentStep === steps.length - 1 ? (
+                            <Check className="h-4 w-4" />
+                          ) : (
+                            <ChevronRight className="h-4 w-4" />
+                          )}
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
+                </CardFooter>
               </div>
-              {formData.services.length === 0 && (
-                <p className="text-red-400 text-xs mt-1" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                  Please select at least one service
-                </p>
-              )}
-            </div>
+            </Card>
+          </motion.div>
 
-            {/* Any Other Information */}
-            <div>
-              <label htmlFor="other_info" className="block text-white mb-2 text-sm" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                Any Other Information
-              </label>
-              <textarea
-                id="other_info"
-                name="other_info"
-                value={formData.other_info}
-                onChange={handleChange}
-                rows={6}
-                className="w-full px-4 py-3 text-base bg-transparent border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:border-white focus:border-opacity-60 transition-all resize-none"
-                placeholder=""
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-              />
-            </div>
-
-            {/* Status Messages */}
-            {submitStatus.type && (
-              <div
-                className={`p-4 rounded-lg ${
-                  submitStatus.type === 'success'
-                    ? 'bg-gray-700 bg-opacity-50 border border-gray-500 text-gray-200'
-                    : 'bg-red-900 bg-opacity-50 border border-red-700 text-red-200'
-                }`}
-                style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
-              >
-                {submitStatus.message}
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <HoverButton
-              type="submit"
-              disabled={isSubmitting || formData.services.length === 0}
-              className="w-full text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          {/* Step indicator */}
+          {!showSuccess && (
+            <motion.div
+              className="mt-4 text-center text-sm text-white/70"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
             >
-              {isSubmitting ? 'Sending...' : (
-                <>
-                  Submit
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                </>
-              )}
-            </HoverButton>
-          </form>
+              Step {currentStep + 1} of {steps.length}: {steps[currentStep].title}
+            </motion.div>
+          )}
+            </>
+          )}
         </div>
       </div>
     </div>
