@@ -233,14 +233,17 @@
     display: block !important;
     position: static !important;
     width: 100% !important;
-    height: 24rem !important;
+    height: auto !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
   /* Middle column mobile images need h-full styling */
   .sticky-scroll-container .sticky-column .mobile-bottom-image {
     height: 100% !important;
+    object-fit: contain !important;
   }
 
   .sticky-scroll-container .desktop-bottom-image,
