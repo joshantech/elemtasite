@@ -66,7 +66,7 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                   className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md desktop-bottom-image'
                 />
                 <img
-                  src='/images/sticky-scroll/smartermobile.svg'
+                  src='/images/sticky-scroll/smartermobilenew.svg'
                   alt=''
                   className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
@@ -94,7 +94,7 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                   className='transition-all duration-300 h-full w-full  align-bottom object-cover rounded-md desktop-bottom-image'
                 />
                 <img
-                  src='/images/sticky-scroll/fastermobile.svg'
+                  src='/images/sticky-scroll/fastermobilenew.svg'
                   alt=''
                   className='transition-all duration-300 h-full w-full  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
@@ -136,7 +136,7 @@ const Component = forwardRef<HTMLDivElement>((props, ref) => {
                   className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md desktop-bottom-image'
                 />
                 <img
-                  src='/images/sticky-scroll/furthermobile.svg'
+                  src='/images/sticky-scroll/furthermobilenew.svg'
                   alt=''
                   className='transition-all duration-300 w-full h-96  align-bottom object-cover rounded-md mobile-bottom-image'
                 />
