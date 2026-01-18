@@ -209,6 +209,11 @@
 /* Default state: show desktop images by default, hide mobile images */
 .sticky-scroll-container .mobile-bottom-image {
   display: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .sticky-scroll-container .desktop-bottom-image {
@@ -218,22 +223,66 @@
 /* Mobile/Desktop image visibility rules - separate media query for better specificity */
 @media (max-width: 768px) {
   /* Show mobile images and hide desktop images on mobile */
-  .sticky-scroll-container .mobile-bottom-image {
+  .sticky-scroll-container .mobile-bottom-image,
+  .sticky-scroll-container .left-column .mobile-bottom-image,
+  .sticky-scroll-container .right-column .mobile-bottom-image,
+  .sticky-scroll-container .sticky-column .mobile-bottom-image,
+  .sticky-scroll-container figure .mobile-bottom-image,
+  .image-gallery-grid .mobile-bottom-image,
+  img.mobile-bottom-image {
     display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: 24rem !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
-  
-  .sticky-scroll-container .desktop-bottom-image {
+
+  /* Middle column mobile images need h-full styling */
+  .sticky-scroll-container .sticky-column .mobile-bottom-image {
+    height: 100% !important;
+  }
+
+  .sticky-scroll-container .desktop-bottom-image,
+  .sticky-scroll-container .left-column .desktop-bottom-image,
+  .sticky-scroll-container .right-column .desktop-bottom-image,
+  .sticky-scroll-container .sticky-column .desktop-bottom-image,
+  .sticky-scroll-container figure .desktop-bottom-image,
+  .image-gallery-grid .desktop-bottom-image,
+  img.desktop-bottom-image {
     display: none !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 }
 
 /* Show desktop images and hide mobile images on desktop */
 @media (min-width: 769px) {
-  .sticky-scroll-container .mobile-bottom-image {
+  .sticky-scroll-container .mobile-bottom-image,
+  .sticky-scroll-container .left-column .mobile-bottom-image,
+  .sticky-scroll-container .right-column .mobile-bottom-image,
+  .sticky-scroll-container .sticky-column .mobile-bottom-image,
+  .sticky-scroll-container figure .mobile-bottom-image,
+  .image-gallery-grid .mobile-bottom-image,
+  img.mobile-bottom-image {
     display: none !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
-  
-  .sticky-scroll-container .desktop-bottom-image {
+
+  .sticky-scroll-container .desktop-bottom-image,
+  .sticky-scroll-container .left-column .desktop-bottom-image,
+  .sticky-scroll-container .right-column .desktop-bottom-image,
+  .sticky-scroll-container .sticky-column .desktop-bottom-image,
+  .sticky-scroll-container figure .desktop-bottom-image,
+  .image-gallery-grid .desktop-bottom-image,
+  img.desktop-bottom-image {
     display: block !important;
   }
 }
