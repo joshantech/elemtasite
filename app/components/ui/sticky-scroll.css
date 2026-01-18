@@ -204,23 +204,36 @@
     opacity: 1 !important;
   }
   
+}
+
+/* Default state: show desktop images by default, hide mobile images */
+.sticky-scroll-container .mobile-bottom-image {
+  display: none !important;
+}
+
+.sticky-scroll-container .desktop-bottom-image {
+  display: block !important;
+}
+
+/* Mobile/Desktop image visibility rules - separate media query for better specificity */
+@media (max-width: 768px) {
   /* Show mobile images and hide desktop images on mobile */
-  .mobile-bottom-image {
+  .sticky-scroll-container .mobile-bottom-image {
     display: block !important;
   }
   
-  .desktop-bottom-image {
+  .sticky-scroll-container .desktop-bottom-image {
     display: none !important;
   }
 }
 
 /* Show desktop images and hide mobile images on desktop */
 @media (min-width: 769px) {
-  .mobile-bottom-image {
+  .sticky-scroll-container .mobile-bottom-image {
     display: none !important;
   }
   
-  .desktop-bottom-image {
+  .sticky-scroll-container .desktop-bottom-image {
     display: block !important;
   }
 }
