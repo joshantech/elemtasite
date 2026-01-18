@@ -233,7 +233,7 @@
     display: block !important;
     position: static !important;
     width: 100% !important;
-    height: auto !important;
+    height: 14rem !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     object-fit: contain !important;
