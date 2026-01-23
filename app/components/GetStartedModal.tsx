@@ -532,12 +532,58 @@ export default function GetStartedModal({ isOpen, onClose }: GetStartedModalProp
                                 <SelectTrigger className="w-[120px] bg-transparent border-white/30 text-white focus:ring-2 focus:ring-white/20 focus:border-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
                                   <SelectValue />
                                 </SelectTrigger>
-                                <SelectContent className="bg-black border-white/30 text-white" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
-                                  <SelectItem value="+1" className="focus:bg-white/10">US +1</SelectItem>
+                                <SelectContent className="bg-black border-white/30 text-white max-h-[300px]" style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}>
+                                  <SelectItem value="+1" className="focus:bg-white/10">US/CA +1</SelectItem>
                                   <SelectItem value="+44" className="focus:bg-white/10">UK +44</SelectItem>
                                   <SelectItem value="+33" className="focus:bg-white/10">FR +33</SelectItem>
                                   <SelectItem value="+49" className="focus:bg-white/10">DE +49</SelectItem>
                                   <SelectItem value="+81" className="focus:bg-white/10">JP +81</SelectItem>
+                                  <SelectItem value="+61" className="focus:bg-white/10">AU +61</SelectItem>
+                                  <SelectItem value="+86" className="focus:bg-white/10">CN +86</SelectItem>
+                                  <SelectItem value="+91" className="focus:bg-white/10">IN +91</SelectItem>
+                                  <SelectItem value="+55" className="focus:bg-white/10">BR +55</SelectItem>
+                                  <SelectItem value="+52" className="focus:bg-white/10">MX +52</SelectItem>
+                                  <SelectItem value="+34" className="focus:bg-white/10">ES +34</SelectItem>
+                                  <SelectItem value="+39" className="focus:bg-white/10">IT +39</SelectItem>
+                                  <SelectItem value="+31" className="focus:bg-white/10">NL +31</SelectItem>
+                                  <SelectItem value="+46" className="focus:bg-white/10">SE +46</SelectItem>
+                                  <SelectItem value="+47" className="focus:bg-white/10">NO +47</SelectItem>
+                                  <SelectItem value="+45" className="focus:bg-white/10">DK +45</SelectItem>
+                                  <SelectItem value="+358" className="focus:bg-white/10">FI +358</SelectItem>
+                                  <SelectItem value="+48" className="focus:bg-white/10">PL +48</SelectItem>
+                                  <SelectItem value="+41" className="focus:bg-white/10">CH +41</SelectItem>
+                                  <SelectItem value="+43" className="focus:bg-white/10">AT +43</SelectItem>
+                                  <SelectItem value="+32" className="focus:bg-white/10">BE +32</SelectItem>
+                                  <SelectItem value="+351" className="focus:bg-white/10">PT +351</SelectItem>
+                                  <SelectItem value="+353" className="focus:bg-white/10">IE +353</SelectItem>
+                                  <SelectItem value="+64" className="focus:bg-white/10">NZ +64</SelectItem>
+                                  <SelectItem value="+65" className="focus:bg-white/10">SG +65</SelectItem>
+                                  <SelectItem value="+852" className="focus:bg-white/10">HK +852</SelectItem>
+                                  <SelectItem value="+82" className="focus:bg-white/10">KR +82</SelectItem>
+                                  <SelectItem value="+886" className="focus:bg-white/10">TW +886</SelectItem>
+                                  <SelectItem value="+60" className="focus:bg-white/10">MY +60</SelectItem>
+                                  <SelectItem value="+63" className="focus:bg-white/10">PH +63</SelectItem>
+                                  <SelectItem value="+66" className="focus:bg-white/10">TH +66</SelectItem>
+                                  <SelectItem value="+62" className="focus:bg-white/10">ID +62</SelectItem>
+                                  <SelectItem value="+84" className="focus:bg-white/10">VN +84</SelectItem>
+                                  <SelectItem value="+971" className="focus:bg-white/10">AE +971</SelectItem>
+                                  <SelectItem value="+966" className="focus:bg-white/10">SA +966</SelectItem>
+                                  <SelectItem value="+972" className="focus:bg-white/10">IL +972</SelectItem>
+                                  <SelectItem value="+90" className="focus:bg-white/10">TR +90</SelectItem>
+                                  <SelectItem value="+20" className="focus:bg-white/10">EG +20</SelectItem>
+                                  <SelectItem value="+27" className="focus:bg-white/10">ZA +27</SelectItem>
+                                  <SelectItem value="+234" className="focus:bg-white/10">NG +234</SelectItem>
+                                  <SelectItem value="+254" className="focus:bg-white/10">KE +254</SelectItem>
+                                  <SelectItem value="+7" className="focus:bg-white/10">RU +7</SelectItem>
+                                  <SelectItem value="+380" className="focus:bg-white/10">UA +380</SelectItem>
+                                  <SelectItem value="+30" className="focus:bg-white/10">GR +30</SelectItem>
+                                  <SelectItem value="+420" className="focus:bg-white/10">CZ +420</SelectItem>
+                                  <SelectItem value="+36" className="focus:bg-white/10">HU +36</SelectItem>
+                                  <SelectItem value="+40" className="focus:bg-white/10">RO +40</SelectItem>
+                                  <SelectItem value="+54" className="focus:bg-white/10">AR +54</SelectItem>
+                                  <SelectItem value="+56" className="focus:bg-white/10">CL +56</SelectItem>
+                                  <SelectItem value="+57" className="focus:bg-white/10">CO +57</SelectItem>
+                                  <SelectItem value="+51" className="focus:bg-white/10">PE +51</SelectItem>
                                 </SelectContent>
                               </Select>
                               <Input

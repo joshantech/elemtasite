@@ -320,11 +320,57 @@ export default function Contact() {
                     className="px-3 sm:px-4 py-3 bg-transparent border border-white border-opacity-30 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:border-white focus:border-opacity-60 transition-all"
                     style={{ fontFamily: "'CaviarDreams', Arial, Helvetica, sans-serif" }}
                   >
-                    <option value="+1" className="bg-gray-900">US +1</option>
+                    <option value="+1" className="bg-gray-900">US/CA +1</option>
                     <option value="+44" className="bg-gray-900">UK +44</option>
                     <option value="+33" className="bg-gray-900">FR +33</option>
                     <option value="+49" className="bg-gray-900">DE +49</option>
                     <option value="+81" className="bg-gray-900">JP +81</option>
+                    <option value="+61" className="bg-gray-900">AU +61</option>
+                    <option value="+86" className="bg-gray-900">CN +86</option>
+                    <option value="+91" className="bg-gray-900">IN +91</option>
+                    <option value="+55" className="bg-gray-900">BR +55</option>
+                    <option value="+52" className="bg-gray-900">MX +52</option>
+                    <option value="+34" className="bg-gray-900">ES +34</option>
+                    <option value="+39" className="bg-gray-900">IT +39</option>
+                    <option value="+31" className="bg-gray-900">NL +31</option>
+                    <option value="+46" className="bg-gray-900">SE +46</option>
+                    <option value="+47" className="bg-gray-900">NO +47</option>
+                    <option value="+45" className="bg-gray-900">DK +45</option>
+                    <option value="+358" className="bg-gray-900">FI +358</option>
+                    <option value="+48" className="bg-gray-900">PL +48</option>
+                    <option value="+41" className="bg-gray-900">CH +41</option>
+                    <option value="+43" className="bg-gray-900">AT +43</option>
+                    <option value="+32" className="bg-gray-900">BE +32</option>
+                    <option value="+351" className="bg-gray-900">PT +351</option>
+                    <option value="+353" className="bg-gray-900">IE +353</option>
+                    <option value="+64" className="bg-gray-900">NZ +64</option>
+                    <option value="+65" className="bg-gray-900">SG +65</option>
+                    <option value="+852" className="bg-gray-900">HK +852</option>
+                    <option value="+82" className="bg-gray-900">KR +82</option>
+                    <option value="+886" className="bg-gray-900">TW +886</option>
+                    <option value="+60" className="bg-gray-900">MY +60</option>
+                    <option value="+63" className="bg-gray-900">PH +63</option>
+                    <option value="+66" className="bg-gray-900">TH +66</option>
+                    <option value="+62" className="bg-gray-900">ID +62</option>
+                    <option value="+84" className="bg-gray-900">VN +84</option>
+                    <option value="+971" className="bg-gray-900">AE +971</option>
+                    <option value="+966" className="bg-gray-900">SA +966</option>
+                    <option value="+972" className="bg-gray-900">IL +972</option>
+                    <option value="+90" className="bg-gray-900">TR +90</option>
+                    <option value="+20" className="bg-gray-900">EG +20</option>
+                    <option value="+27" className="bg-gray-900">ZA +27</option>
+                    <option value="+234" className="bg-gray-900">NG +234</option>
+                    <option value="+254" className="bg-gray-900">KE +254</option>
+                    <option value="+7" className="bg-gray-900">RU +7</option>
+                    <option value="+380" className="bg-gray-900">UA +380</option>
+                    <option value="+30" className="bg-gray-900">GR +30</option>
+                    <option value="+420" className="bg-gray-900">CZ +420</option>
+                    <option value="+36" className="bg-gray-900">HU +36</option>
+                    <option value="+40" className="bg-gray-900">RO +40</option>
+                    <option value="+54" className="bg-gray-900">AR +54</option>
+                    <option value="+56" className="bg-gray-900">CL +56</option>
+                    <option value="+57" className="bg-gray-900">CO +57</option>
+                    <option value="+51" className="bg-gray-900">PE +51</option>
                   </select>
                   <input
                     type="tel"
